@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MemeStudio</string>
     <string name="my_memes">My Memes</string>
+    <string name="app_title">Create New Meme</string>
+    <string name="lily">Lil-ify</string>
+    <string name="me">Me Vs Me</string>
+    <string name="theory">Theory</string>
+    <string name="paint">paint</string>
 </resources>
