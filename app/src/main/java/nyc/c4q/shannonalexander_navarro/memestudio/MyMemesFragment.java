@@ -15,9 +15,8 @@ import android.widget.LinearLayout;
  */
 
 public class MyMemesFragment extends Fragment {
-    LinearLayout memeLayout;
-
-    FloatingActionButton closeRVFrag;
+    private LinearLayout memeLayout;
+    private FloatingActionButton closeRVFrag;
 
     @Nullable
     @Override
