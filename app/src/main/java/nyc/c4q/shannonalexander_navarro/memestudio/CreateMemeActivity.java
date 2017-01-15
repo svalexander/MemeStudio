@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
+
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton home_fab;
@@ -73,5 +75,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                     .fit()
                     .into(showPicture);
         }
+    }
+
+    public void MeVsMeFragment(View view) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
+                .commit();
     }
 }

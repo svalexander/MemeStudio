@@ -19,10 +19,10 @@ public class CaptureView {
         this.mView = view;
     }
 
-    public void capture(int viewId){
+    public void capture(){
         //Find the view we are after: Put into findViewById:
 
-        View view = (View) mView.findViewById(0);
+        View view = (View) mView.findViewById();
 
         //Create a Bitmap with the same dimensions
         Bitmap image = Bitmap.createBitmap(view.getWidth(),
