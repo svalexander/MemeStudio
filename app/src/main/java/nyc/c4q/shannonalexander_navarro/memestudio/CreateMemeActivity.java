@@ -1,11 +1,6 @@
 package nyc.c4q.shannonalexander_navarro.memestudio;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,21 +52,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             Uri uri = data.getData();
-            String[] projection = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(projection[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            Bitmap selectedPhoto = BitmapFactory.decodeFile(picturePath);
-            Drawable d = new BitmapDrawable(selectedPhoto);
-            showPicture.setBackground(d);
+            Picasso.with(getApplicationContext())
+                    .load(uri)
+                    .fit()
+                    .into(showPicture);
         }
     }
 }
