@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import java.io.File;
-
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
