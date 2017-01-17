@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import me.anwarshahriar.calligrapher.Calligrapher;
+
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton home_fab;
@@ -26,6 +28,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_create_meme);
 
         initViews();
+
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this, "Quantico-Regular.ttf", true);
+        calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
 
         shareMeme.setOnClickListener(new View.OnClickListener() {
             @Override
