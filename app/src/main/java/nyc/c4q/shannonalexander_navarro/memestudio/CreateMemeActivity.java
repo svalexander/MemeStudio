@@ -12,7 +12,11 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+<<<<<<< HEAD
 import me.anwarshahriar.calligrapher.Calligrapher;
+=======
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
+>>>>>>> bc78d5976f414acc156c6e04a5aaa6c02912fe67
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -79,5 +83,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                     .fit()
                     .into(showPicture);
         }
+    }
+
+    public void MeVsMeFragment(View view) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
+                .commit();
     }
 }
