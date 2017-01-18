@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initViews();
 
-
-
     }
 
     private void initViews() {

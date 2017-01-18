@@ -5,23 +5,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
 
+import me.anwarshahriar.calligrapher.Calligrapher;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
+
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FloatingActionButton home_fab;
-    private FrameLayout galleryBtn;
+    private ImageView home_fab;
+    //private FrameLayout galleryBtn;
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
-    private FloatingActionButton shareMeme;
+    private ImageView shareMeme;
+    private ImageView galleryBtn;
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
@@ -36,6 +38,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
         initViews();
 
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this, "Quantico-Regular.ttf", true);
+        //calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
+
+        // Shares Meme
         shareMeme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,23 +56,26 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+    // Initializes Views
     private void initViews() {
-        home_fab = (FloatingActionButton) findViewById(R.id.home);
+        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
+        galleryBtn.setOnClickListener(this);
+        home_fab = (ImageView) findViewById(R.id.home);
         home_fab.setOnClickListener(this);
         showPicture = (ImageView) findViewById(R.id.showpicture);
-        galleryBtn = (FrameLayout) findViewById(R.id.gallerybtn);
-        galleryBtn.setOnClickListener(this);
-        shareMeme = (FloatingActionButton) findViewById(R.id.share);
+        shareMeme = (ImageView) findViewById(R.id.share);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            // from Meme Activity to Home Activity
             case R.id.home:
                 Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
                 startActivity(homeIntent);
                 break;
-            case R.id.gallerybtn:
+            // to Gallery
+            case R.id.gallery_icon:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
@@ -75,6 +85,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        // Loads gallery picture into showPicture
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
 
@@ -91,6 +102,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
         }
     }
+
 
 //    public void permission() {
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -113,6 +125,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         editor.putString("uriLink", String.valueOf(showPicture.getDrawingCache(true)));
         editor.apply();
 
+    }
+
+
+    public void MeVsMeFragment(View view) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
+                .commit();
     }
 
 }
