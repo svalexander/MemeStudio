@@ -1,9 +1,17 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
-
-/**
- * Created by rusili on 1/15/17.
- */
-
+//package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
+//
+//import android.graphics.Bitmap;
+//import android.graphics.Canvas;
+//import android.os.Environment;
+//import android.view.View;
+//
+//import java.io.File;
+//import java.io.FileOutputStream;
+//
+///**
+// * Created by rusili on 1/15/17.
+// */
+//
 //public class CaptureView {
 //    private View mView;
 //

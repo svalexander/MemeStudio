@@ -30,6 +30,7 @@ public class CreateImageFile {
         return photo;
     }
 
+    //Creates an image file that is unique using a timestamp
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "PNG_" + timeStamp + "_";
