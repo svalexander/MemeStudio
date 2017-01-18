@@ -1,7 +1,8 @@
 package nyc.c4q.shannonalexander_navarro.memestudio;
 
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+
+
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton home_fab;
@@ -20,10 +23,16 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private int PICK_IMAGE_REQUEST = 1;
     private FloatingActionButton shareMeme;
 
+//    private String myTag;
+//    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
+//    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
+
+
 
         initViews();
 
@@ -67,11 +76,43 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri uri = data.getData();
+            android.net.Uri uri = data.getData();
+
+
+
             Picasso.with(getApplicationContext())
                     .load(uri)
                     .fit()
                     .into(showPicture);
+
+//            myPrefsEdit.putString("url", uri.toString());
+//            myPrefsEdit.commit();
+
+
         }
     }
+
+//    public void permission() {
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+//                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{Manifest.permission.INTERNET},   //request specific permission from user
+//                    10);
+//
+//            return;
+//        }
+//    }
+
+    public void saveInfo(View view){
+        SharedPreferences sharedPref = getSharedPreferences("uri", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("uriLink", String.valueOf(showPicture.getDrawingCache(true)));
+        editor.apply();
+
+    }
+
 }
