@@ -4,27 +4,23 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-<<<<<<< HEAD
 import me.anwarshahriar.calligrapher.Calligrapher;
-=======
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
->>>>>>> bc78d5976f414acc156c6e04a5aaa6c02912fe67
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FloatingActionButton home_fab;
-    private FrameLayout galleryBtn;
+    private ImageView home_fab;
+    //private FrameLayout galleryBtn;
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
-    private FloatingActionButton shareMeme;
+    private ImageView shareMeme;
+    private ImageView galleryBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +31,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
-        calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
+      //  calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
 
         shareMeme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,12 +47,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initViews() {
-        home_fab = (FloatingActionButton) findViewById(R.id.home);
+
+        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
+        galleryBtn.setOnClickListener(this);
+        home_fab = (ImageView) findViewById(R.id.home);
         home_fab.setOnClickListener(this);
         showPicture = (ImageView) findViewById(R.id.showpicture);
-        galleryBtn = (FrameLayout) findViewById(R.id.gallerybtn);
-        galleryBtn.setOnClickListener(this);
-        shareMeme = (FloatingActionButton) findViewById(R.id.share);
+        shareMeme = (ImageView) findViewById(R.id.share);
     }
 
     @Override
@@ -66,7 +63,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
                 startActivity(homeIntent);
                 break;
-            case R.id.gallerybtn:
+            case R.id.gallery_icon:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
