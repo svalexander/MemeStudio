@@ -28,7 +28,7 @@ public class MemeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return memes.size();
+        return meme.size();
     }
 
     public void setData(List<Meme> meme) {

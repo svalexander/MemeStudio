@@ -1,6 +1,7 @@
 package nyc.c4q.shannonalexander_navarro.memestudio;
 
 import android.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,15 @@ import com.squareup.picasso.Picasso;
  * Created by tarynking on 1/17/17.
  */
 
-public class MemeViewHolder {
+public class MemeViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView memeNameIv;
     private Fragment fragment;
 
 
-    public MemeViewHolder(View itemView) {
-        super(itemView);
-//        super(inflateView(parent));
+    public MemeViewHolder(ViewGroup parent) {
+//        super(itemView);
+        super(inflateView(parent));
         memeNameIv = (ImageView)
                 itemView.findViewById(R.id.iv_meme_item_id);
 
@@ -34,7 +35,7 @@ public class MemeViewHolder {
     public void bind(final Meme meme) {
 
         memeNameIv.setImageURI(meme.getUri());
-        Picasso.with(this)
+        Picasso.with(itemView.getContext())
                 .load("http://i.imgur.com/DvpvklR.png")
                 .into(memeNameIv);
 
