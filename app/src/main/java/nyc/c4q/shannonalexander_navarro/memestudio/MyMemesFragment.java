@@ -20,7 +20,7 @@ public class MyMemesFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.my_memes_fragment, container, false);
         memeLayout = (LinearLayout) root.findViewById(R.id.saved_memes_frag);
@@ -28,7 +28,7 @@ public class MyMemesFragment extends Fragment {
 
         closeRVFrag.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick (View view) {
                 Intent closeIntent = new Intent(getContext(), MainActivity.class);
                 startActivity(closeIntent);
             }

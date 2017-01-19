@@ -1,30 +1,33 @@
 package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.os.Environment;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
+
+// 01-19 15:48:58.549 27614-27614/nyc.c4q.shannonalexander_navarro.memestudio D/Location of picture:: /storage/emulated/0/Android/data/nyc.c4q.shannonalexander_navarro.memestudio/files/Pictures/PNG_20170119_154858_-1059305312.png
+// 01-19 15:50:21.691 28298-28298/nyc.c4q.shannonalexander_navarro.memestudio D/Location of picture:: /storage/emulated/0/Android/data/nyc.c4q.shannonalexander_navarro.memestudio/files/Pictures/PNG_20170119_155021_1512245498.png
 
 /**
  * Created by rusili on 1/15/17.
  */
 
 public class CaptureView {
-    private View mView;
+    private Activity mActivity;
 
-    public CaptureView(View view){
-        this.mView = view;
+    public CaptureView (Activity inputActivity) {
+        this.mActivity = inputActivity;
     }
 
-    public void capture(){
+    public void capture () {
         //Find the view we are after: Put into findViewById:
 
-        View view = (View) mView.findViewById(R.id.meme_frame_layout);
+        View view = (View) mActivity.findViewById(R.id.activity_create_meme);
 
         //Create a Bitmap with the same dimensions
         Bitmap image = Bitmap.createBitmap(view.getWidth(),
@@ -35,12 +38,10 @@ public class CaptureView {
 
         //Store to sdcard
         try {
-            String path = Environment.getExternalStorageDirectory().toString();
             CreateImageFile create = new CreateImageFile(view.getContext());
             File viewFile = create.returnFile();
-            FileOutputStream out = new FileOutputStream(viewFile);
 
-            image.compress(Bitmap.CompressFormat.PNG, 90, out); //Output
+            Toast.makeText(view.getContext(), "Meme Saved!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
