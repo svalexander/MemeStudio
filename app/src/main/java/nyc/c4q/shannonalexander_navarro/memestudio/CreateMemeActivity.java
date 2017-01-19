@@ -30,8 +30,9 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
-      //  calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
+        //calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
 
+        // Shares Meme
         shareMeme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,8 +46,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+    // Initializes Views
     private void initViews() {
-
         galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
         galleryBtn.setOnClickListener(this);
         home_fab = (ImageView) findViewById(R.id.home);
@@ -58,10 +59,12 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            // from Meme Activity to Home Activity
             case R.id.home:
                 Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
                 startActivity(homeIntent);
                 break;
+            // to Gallery
             case R.id.gallery_icon:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
@@ -72,6 +75,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        // Loads gallery picture into showPicture
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             Picasso.with(getApplicationContext())
@@ -81,6 +85,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    // Replaces Meme Fragment with Rusi Fragment
     public void MeVsMeFragment(View view) {
         getFragmentManager().beginTransaction()
                 .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
