@@ -13,12 +13,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView myMemes;
     private FloatingActionButton goTo;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initViews();
+
     }
 
     private void initViews() {
@@ -41,4 +45,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
 }
