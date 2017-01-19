@@ -16,7 +16,6 @@ import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView home_fab;
-    //private FrameLayout galleryBtn;
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
     private ImageView shareMeme;
