@@ -23,7 +23,6 @@ public class Rusi_Fragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.rusi_meme, container, false);
         memeBackground = (ImageView) mView.findViewById(R.id.Rusi_meme_background);
-        //memeBackground.setImageResource();
         return mView;
     }
 }

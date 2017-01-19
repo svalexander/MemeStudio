@@ -33,8 +33,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
 
-
-
         initViews();
 
         Calligrapher calligrapher = new Calligrapher(this);
@@ -88,8 +86,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
 
-
-
             Picasso.with(getApplicationContext())
                     .load(uri)
                     .fit()
@@ -129,7 +125,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     public void MeVsMeFragment(View view) {
         getFragmentManager().beginTransaction()
-                .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
+                .replace(R.id.cardView, new Rusi_Fragment())
                 .commit();
     }
 
