@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio;
+package nyc.c4q.shannonalexander_navarro.memestudio.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.MyMemesFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

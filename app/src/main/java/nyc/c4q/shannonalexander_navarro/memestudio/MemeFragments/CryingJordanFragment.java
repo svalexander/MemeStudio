@@ -21,9 +21,9 @@ public class CryingJordanFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-       View root = inflater.inflate(R.layout.crying_jordan_frag, container, false);
+        View root = inflater.inflate(R.layout.crying_jordan_frag, container, false);
         fragView = (ImageView) root.findViewById(R.id.cj_iv_replacing_original_iv);
         return root;
     }

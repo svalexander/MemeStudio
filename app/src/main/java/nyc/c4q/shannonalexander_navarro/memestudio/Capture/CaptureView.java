@@ -45,11 +45,11 @@ public class CaptureView {
 
     public void capture () {
         //Create a Bitmap with the same dimensions
-            Bitmap image = Bitmap.createBitmap(mView.getWidth(),
-                    mView.getHeight(),
-                    Bitmap.Config.RGB_565);
-            //Draw the view inside the Bitmap
-            mView.draw(new Canvas(image));
+        Bitmap image = Bitmap.createBitmap(mView.getWidth(),
+                mView.getHeight(),
+                Bitmap.Config.RGB_565);
+        //Draw the view inside the Bitmap
+        mView.draw(new Canvas(image));
         try {
             saveImageToExternal("abc", image);
         } catch (IOException e) {
@@ -68,7 +68,7 @@ public class CaptureView {
         }
     }
 
-    public void saveImageToExternal(String imgName, Bitmap bm) throws IOException {
+    public void saveImageToExternal (String imgName, Bitmap bm) throws IOException {
         File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); //Creates app specific folder
         path.mkdirs();
         File imageFile = new File(path, imgName + ".png"); // Imagename.png

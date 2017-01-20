@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio;
+package nyc.c4q.shannonalexander_navarro.memestudio.Activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -22,6 +22,7 @@ import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -102,7 +103,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
 //                TakePicture tp = new TakePicture(mActivity);
             }
-        });    }
+        });
+    }
 
     @Override
     public void onClick (View v) {
@@ -176,7 +178,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
     //persmission method.
-    public static void verifyStoragePermissions(Activity activity) {
+    public static void verifyStoragePermissions (Activity activity) {
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);

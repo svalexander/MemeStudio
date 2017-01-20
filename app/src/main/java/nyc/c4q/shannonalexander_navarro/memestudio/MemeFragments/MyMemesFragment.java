@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity;
+import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 /**
  * Created by shannonalexander-navarro on 1/8/17.

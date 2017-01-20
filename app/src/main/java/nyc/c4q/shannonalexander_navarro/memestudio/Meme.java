@@ -8,17 +8,13 @@ import android.net.Uri;
 
 public class Meme {
 
-
     public Uri uri;
 
     public Meme (Uri uri) {
         this.uri = uri;
     }
 
-
     public Uri getUri () {
         return uri;
     }
-
-
 }
