@@ -9,14 +9,18 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 
@@ -33,6 +37,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private int PICK_IMAGE_REQUEST = 1;
     private ImageView shareMeme;
     private ImageView galleryBtn;
+    private CardView includedView;
+    private Button theoryBtn;
     private ImageView btnSave;
 
 //    private String myTag;
@@ -76,6 +82,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+
     // Initializes Views
     private void initViews () {
         galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
@@ -85,7 +92,17 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
         btnSave = (ImageView) findViewById(R.id.save);
-    }
+        theoryBtn = (Button) findViewById(R.id.theory);
+        theoryBtn.setOnClickListener(this);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                //CaptureView cv = new CaptureView(mActivity);
+                //cv.capture();
+
+//                TakePicture tp = new TakePicture(mActivity);
+            }
+        });    }
 
     @Override
     public void onClick (View v) {
@@ -100,7 +117,12 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
+            case R.id.theory:
+                FragmentManager cryFragment = getSupportFragmentManager();
+                cryFragment.beginTransaction().replace(R.id.cardView, new CryingJordanFragment()).commit();
         }
+
+
     }
 
     @Override
