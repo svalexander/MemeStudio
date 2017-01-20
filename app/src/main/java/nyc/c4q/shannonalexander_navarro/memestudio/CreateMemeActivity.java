@@ -23,21 +23,19 @@ import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
-<<<<<<< HEAD
+
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
 //    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
 
-=======
+
     private Activity mActivity = this;
->>>>>>> 32ccb1407417f42273ddfb3e24ac57afb17748d1
+
     private ImageView home_fab;
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
     private ImageView shareMeme;
     private ImageView galleryBtn;
-<<<<<<< HEAD
     Context context;
-=======
     private CardView includedView;
     private Button theoryBtn;
     private ImageView btnSave;
@@ -45,7 +43,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
 //    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
->>>>>>> 32ccb1407417f42273ddfb3e24ac57afb17748d1
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
