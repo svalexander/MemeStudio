@@ -80,7 +80,6 @@
         <LinearLayout
             android:id="@+id/frags_go_here"
             android:layout_width="350dp"
-<<<<<<< HEAD
             android:layout_height="0dp"
             android:layout_weight="6.5">
 
@@ -90,11 +89,6 @@
                 android:layout_width="match_parent"
                 android:background="@color/cardview_light_background">
                 <include layout="@layout/picture_options" />
-=======
-            android:layout_height="350dp"
-            android:background="@color/cardview_light_background">
->>>>>>> 3098271e733286ab49a1f82dc06653e3b02bf1b3
-
                 <ImageView
                     android:id="@+id/showpicture"
                     android:layout_width="match_parent"

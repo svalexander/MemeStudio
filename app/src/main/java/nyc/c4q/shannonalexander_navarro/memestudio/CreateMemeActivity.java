@@ -72,6 +72,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         home_fab.setOnClickListener(this);
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
+        btnSave = (ImageView) findViewById(R.id.save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
