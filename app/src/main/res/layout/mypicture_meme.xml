@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rusi_meme_frame_layout"
+    android:id="@+id/mypicture_meme_frame_layout"
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="350dp"
@@ -9,7 +9,7 @@
     >
 
     <EditText
-        android:id="@+id/Rusi_Top_Text"
+        android:id="@+id/MyPicture_Top_Text"
         android:layout_gravity="top"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         />
 
     <EditText
-        android:id="@+id/Rusi_Bottom_Text"
+        android:id="@+id/MyPicture_Bottom_Text"
         android:layout_gravity="bottom"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
@@ -30,11 +30,10 @@
         />
 
     <ImageView
-        android:id="@+id/Rusi_meme_background"
+        android:id="@+id/mypicture_meme_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:src="@drawable/evilkermitmeme"
         />
 
 </FrameLayout>

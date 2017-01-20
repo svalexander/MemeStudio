@@ -19,7 +19,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
     private Fragment fragment;
 
 
-    public MemeViewHolder(ViewGroup parent) {
+    public MemeViewHolder (ViewGroup parent) {
 //        super(itemView);
         super(inflateView(parent));
         memeNameIv = (ImageView)
@@ -27,12 +27,12 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    private static View inflateView(ViewGroup parent) {
+    private static View inflateView (ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         return inflater.inflate(R.layout.meme_item_layout, parent, false);
     }
 
-    public void bind(final Meme meme) {
+    public void bind (final Meme meme) {
 
         memeNameIv.setImageURI(meme.getUri());
         Picasso.with(itemView.getContext())

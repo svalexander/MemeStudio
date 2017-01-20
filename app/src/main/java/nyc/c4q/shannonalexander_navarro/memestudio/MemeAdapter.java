@@ -12,26 +12,26 @@ import java.util.List;
 
 public class MemeAdapter extends RecyclerView.Adapter {
 
-    private List<Meme> meme = new ArrayList<>();
+    private List <Meme> meme = new ArrayList <>();
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
         return new MemeViewHolder(parent);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder (RecyclerView.ViewHolder holder, int position) {
         MemeViewHolder animalViewHolder = (MemeViewHolder) holder;
         Meme currentMeme = meme.get(position);
         animalViewHolder.bind(currentMeme);
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount () {
         return meme.size();
     }
 
-    public void setData(List<Meme> meme) {
+    public void setData (List <Meme> meme) {
         this.meme = meme;
         notifyDataSetChanged();
     }

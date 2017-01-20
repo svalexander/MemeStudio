@@ -11,15 +11,14 @@ public class Meme {
 
     public Uri uri;
 
-    public Meme(Uri uri) {
+    public Meme (Uri uri) {
         this.uri = uri;
     }
 
 
-    public Uri getUri() {
+    public Uri getUri () {
         return uri;
     }
-
 
 
 }
