@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -38,8 +37,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private int PICK_IMAGE_REQUEST = 1;
     private ImageView shareMeme;
     private ImageView galleryBtn;
+    private ImageView trashBtn;
     private CardView includedView;
     private Button theoryBtn;
+    private Button meBtn;
     private ImageView btnSave;
 
 //    private String myTag;
@@ -57,6 +58,24 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
         //calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
+    }
+
+
+    // Initializes Views
+    private void initViews () {
+        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
+        meBtn = (Button) findViewById(R.id.me);
+        meBtn.setOnClickListener(this);
+        galleryBtn.setOnClickListener(this);
+        home_fab = (ImageView) findViewById(R.id.home);
+        home_fab.setOnClickListener(this);
+        showPicture = (ImageView) findViewById(R.id.showpicture);
+        shareMeme = (ImageView) findViewById(R.id.share);
+        btnSave = (ImageView) findViewById(R.id.save);
+        theoryBtn = (Button) findViewById(R.id.theory);
+        theoryBtn.setOnClickListener(this);
+        trashBtn = (ImageView) findViewById(R.id.trash);
+        trashBtn.setOnClickListener(this);
 
         // Shares Meme
         shareMeme.setOnClickListener(new View.OnClickListener() {
@@ -71,37 +90,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-
+        // Captures View
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
                 CaptureView cv = new CaptureView(mActivity);
-                //cv.capture();
-
-                //TakePicture tp = new TakePicture(mActivity);
-            }
-        });
-    }
-
-
-    // Initializes Views
-    private void initViews () {
-        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
-        galleryBtn.setOnClickListener(this);
-        home_fab = (ImageView) findViewById(R.id.home);
-        home_fab.setOnClickListener(this);
-        showPicture = (ImageView) findViewById(R.id.showpicture);
-        shareMeme = (ImageView) findViewById(R.id.share);
-        btnSave = (ImageView) findViewById(R.id.save);
-        theoryBtn = (Button) findViewById(R.id.theory);
-        theoryBtn.setOnClickListener(this);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View view) {
-                //CaptureView cv = new CaptureView(mActivity);
-                //cv.capture();
-
-//                TakePicture tp = new TakePicture(mActivity);
             }
         });
     }
@@ -119,9 +112,19 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
+            case R.id.me:
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.cardView, new Rusi_Fragment())
+                        .commit();
+                break;
             case R.id.theory:
-                FragmentManager cryFragment = getSupportFragmentManager();
-                cryFragment.beginTransaction().replace(R.id.cardView, new CryingJordanFragment()).commit();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.cardView, new CryingJordanFragment())
+                        .commit();
+                break;
+            case R.id.trash:
+                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
+                break;
         }
 
 
@@ -129,7 +132,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-
         // Loads gallery picture into showPicture
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
@@ -141,8 +143,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
 //            myPrefsEdit.putString("url", uri.toString());
 //            myPrefsEdit.commit();
-
-
         }
     }
 
@@ -168,13 +168,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         editor.putString("uriLink", String.valueOf(showPicture.getDrawingCache(true)));
         editor.apply();
 
-    }
-
-
-    public void MeVsMeFragment (View view) {
-        getFragmentManager().beginTransaction()
-                .replace(R.id.cardView, new Rusi_Fragment())
-                .commit();
     }
 
     //persmission method.
