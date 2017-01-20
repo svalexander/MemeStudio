@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 
@@ -73,13 +72,15 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
         btnSave = (ImageView) findViewById(R.id.save);
+        theoryBtn = (Button) findViewById(R.id.theory);
+        theoryBtn.setOnClickListener(this);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
                 //CaptureView cv = new CaptureView(mActivity);
                 //cv.capture();
 
-                TakePicture tp = new TakePicture(mActivity);
+//                TakePicture tp = new TakePicture(mActivity);
             }
         });    }
 
@@ -97,8 +98,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
             case R.id.theory:
-                FragmentManager newsFragment = getSupportFragmentManager();
-                newsFragment.beginTransaction().add(R.id.Main_Meme_Fragment, new CryingJordanFragment()).commit();
+                FragmentManager cryFragment = getSupportFragmentManager();
+                cryFragment.beginTransaction().replace(R.id.cardView, new CryingJordanFragment()).commit();
         }
 
 
