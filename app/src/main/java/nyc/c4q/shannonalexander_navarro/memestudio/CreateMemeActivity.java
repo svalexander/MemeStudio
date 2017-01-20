@@ -1,11 +1,14 @@
 package nyc.c4q.shannonalexander_navarro.memestudio;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,12 +16,17 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
-import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
+import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
-
+    // Storage Permissions variables
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     private Activity mActivity = this;
     private ImageView home_fab;
     private ImageView showPicture;
@@ -35,6 +43,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
+        verifyStoragePermissions(this);
 
         initViews();
 
@@ -55,13 +64,14 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                //CaptureView cv = new CaptureView(mActivity);
+                CaptureView cv = new CaptureView(mActivity);
                 //cv.capture();
 
-                TakePicture tp = new TakePicture(mActivity);
+                //TakePicture tp = new TakePicture(mActivity);
             }
         });
     }
@@ -141,6 +151,22 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         getFragmentManager().beginTransaction()
                 .replace(R.id.cardView, new Rusi_Fragment())
                 .commit();
+    }
+
+    //persmission method.
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have read or write permission
+        int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (writePermission != PackageManager.PERMISSION_GRANTED || readPermission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 }

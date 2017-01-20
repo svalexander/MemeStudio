@@ -33,7 +33,7 @@ public class CreateImageFile {
 
     //Creates an image file that is unique using a timestamp
     private File createImageFile () throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyy_MM_dd_HH_mmss").format(new Date());
         String imageFileName = "PNG_" + timeStamp + "_";
         File storageDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
