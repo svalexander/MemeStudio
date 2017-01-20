@@ -88,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:background="@color/cardview_light_background">
                 <include layout="@layout/picture_options" />
+
                 <ImageView
                     android:id="@+id/showpicture"
                     android:layout_width="match_parent"

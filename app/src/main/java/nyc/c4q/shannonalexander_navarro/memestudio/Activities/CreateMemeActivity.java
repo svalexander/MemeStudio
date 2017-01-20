@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
+import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
@@ -36,12 +37,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
     private ImageView shareMeme;
+    private ImageView cameraBtn;
     private ImageView galleryBtn;
     private ImageView trashBtn;
     private CardView includedView;
     private Button theoryBtn;
     private Button meBtn;
-    private ImageView btnSave;
+    private ImageView saveBtn;
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
@@ -63,55 +65,31 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     // Initializes Views
     private void initViews () {
-        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
+        showPicture = (ImageView) findViewById(R.id.showpicture);
+
         meBtn = (Button) findViewById(R.id.me);
         meBtn.setOnClickListener(this);
-        galleryBtn.setOnClickListener(this);
-        home_fab = (ImageView) findViewById(R.id.home);
-        home_fab.setOnClickListener(this);
-        showPicture = (ImageView) findViewById(R.id.showpicture);
-        shareMeme = (ImageView) findViewById(R.id.share);
-        btnSave = (ImageView) findViewById(R.id.save);
         theoryBtn = (Button) findViewById(R.id.theory);
         theoryBtn.setOnClickListener(this);
+
+        cameraBtn = (ImageView) findViewById(R.id.camera_icon);
+        cameraBtn.setOnClickListener(this);
+        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
+        galleryBtn.setOnClickListener(this);
+
         trashBtn = (ImageView) findViewById(R.id.trash);
         trashBtn.setOnClickListener(this);
-
-        // Shares Meme
-        shareMeme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View view) {
-                Intent shareMemeIntent = new Intent();
-                shareMemeIntent.setAction(Intent.ACTION_SEND);
-                shareMemeIntent.setType("image/jpeg");
-
-                // File photoFile = new File(getFilesDir(), "foo.jpg");
-                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
-            }
-        });
-
-        // Captures View
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View view) {
-                CaptureView cv = new CaptureView(mActivity);
-            }
-        });
+        shareMeme = (ImageView) findViewById(R.id.share);
+        shareMeme.setOnClickListener(this);
+        saveBtn = (ImageView) findViewById(R.id.save);
+        saveBtn.setOnClickListener(this);
+        home_fab = (ImageView) findViewById(R.id.home);
+        home_fab.setOnClickListener(this);
     }
 
     @Override
     public void onClick (View v) {
         switch (v.getId()) {
-            // from Meme Activity to Home Activity
-            case R.id.home:
-                Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
-                startActivity(homeIntent);
-                break;
-            // to Gallery
-            case R.id.gallery_icon:
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
-                break;
             case R.id.me:
                 getFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new Rusi_Fragment())
@@ -122,12 +100,32 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .replace(R.id.cardView, new CryingJordanFragment())
                         .commit();
                 break;
+            case R.id.camera_icon:
+                TakePicture tp = new TakePicture(mActivity);
+            // to Gallery
+            case R.id.gallery_icon:
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
+                break;
             case R.id.trash:
                 getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
                 break;
+            case R.id.share:
+                Intent shareMemeIntent = new Intent();
+                shareMemeIntent.setAction(Intent.ACTION_SEND);
+                shareMemeIntent.setType("image/jpeg");
+
+                // File photoFile = new File(getFilesDir(), "foo.jpg");
+                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
+                break;
+            case R.id.save:
+                CaptureView cv = new CaptureView(mActivity);
+                break;
+            case R.id.home:
+                Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
+                startActivity(homeIntent);
+                break;
         }
-
-
     }
 
     @Override
