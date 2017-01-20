@@ -18,25 +18,31 @@ import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
+//    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
+//    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
+
     private ImageView home_fab;
     //private FrameLayout galleryBtn;
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
     private ImageView shareMeme;
     private ImageView galleryBtn;
-
-//    private String myTag;
-//    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
-//    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
 
-
-
         initViews();
+
+//        String uri = myPrefs.getString("uri", null);
+//        if (uri!=null) {
+//            Picasso.with(getApplicationContext())
+//                    .load(uri)
+//                    .fit()
+//                    .into(showPicture);
+//        }
 
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
@@ -89,8 +95,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
 
-
-
             Picasso.with(getApplicationContext())
                     .load(uri)
                     .fit()
@@ -98,8 +102,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
 //            myPrefsEdit.putString("url", uri.toString());
 //            myPrefsEdit.commit();
-
-
         }
     }
 
@@ -132,6 +134,12 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         getFragmentManager().beginTransaction()
                 .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
                 .commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
     }
 
 }

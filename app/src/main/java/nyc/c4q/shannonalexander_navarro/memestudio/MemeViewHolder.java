@@ -36,7 +36,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
 
         memeNameIv.setImageURI(meme.getUri());
         Picasso.with(itemView.getContext())
-                .load("http://i.imgur.com/DvpvklR.png")
+                .load(meme.getUri())
                 .into(memeNameIv);
 
     }
