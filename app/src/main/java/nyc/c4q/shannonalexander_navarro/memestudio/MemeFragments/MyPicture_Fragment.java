@@ -14,15 +14,15 @@ import nyc.c4q.shannonalexander_navarro.memestudio.R;
  * Created by rusili on 1/15/17.
  */
 
-public class Rusi_Fragment extends Fragment {
+public class MyPicture_Fragment extends Fragment {
     private View mView;
-    private ImageView memeBackground;
+    private ImageView mBackground;
 
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.rusi_meme, container, false);
-        memeBackground = (ImageView) mView.findViewById(R.id.Rusi_meme_background);
+        mView = inflater.inflate(R.layout.mypicture_meme, container, false);
+        mBackground = (ImageView) mView.findViewById(R.id.mypicture_meme_background);
         return mView;
     }
 }

@@ -1,5 +1,6 @@
 package nyc.c4q.shannonalexander_navarro.memestudio;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,14 +15,15 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Activity mActivity = this;
     private ImageView home_fab;
     private ImageView showPicture;
     private int PICK_IMAGE_REQUEST = 1;
@@ -29,17 +31,16 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView galleryBtn;
     private CardView includedView;
     private Button theoryBtn;
+    private ImageView btnSave;
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
 //    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
-
-
 
         initViews();
 
@@ -50,33 +51,39 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         // Shares Meme
         shareMeme.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick (View view) {
                 Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
                 shareMemeIntent.setType("image/jpeg");
 
-               // File photoFile = new File(getFilesDir(), "foo.jpg");
+                // File photoFile = new File(getFilesDir(), "foo.jpg");
                 startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
             }
         });
 
     }
 
+
     // Initializes Views
-    private void initViews() {
-        theoryBtn = (Button) findViewById(R.id.theory);
-        theoryBtn.setOnClickListener(this);
-        includedView = (CardView) findViewById(R.id.cardView);
-        galleryBtn = (ImageView) includedView.findViewById(R.id.gallery_icon);
+    private void initViews () {
+        galleryBtn = (ImageView) findViewById(R.id.gallery_icon);
         galleryBtn.setOnClickListener(this);
         home_fab = (ImageView) findViewById(R.id.home);
         home_fab.setOnClickListener(this);
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
-    }
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                //CaptureView cv = new CaptureView(mActivity);
+                //cv.capture();
+
+                TakePicture tp = new TakePicture(mActivity);
+            }
+        });    }
 
     @Override
-    public void onClick(View v) {
+    public void onClick (View v) {
         switch (v.getId()) {
             // from Meme Activity to Home Activity
             case R.id.home:
@@ -97,13 +104,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
 
         // Loads gallery picture into showPicture
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
-
-
 
             Picasso.with(getApplicationContext())
                     .load(uri)
@@ -132,7 +137,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 //        }
 //    }
 
-    public void saveInfo(View view){
+    public void saveInfo (View view) {
         SharedPreferences sharedPref = getSharedPreferences("uri", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -142,9 +147,9 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    public void MeVsMeFragment(View view) {
+    public void MeVsMeFragment (View view) {
         getFragmentManager().beginTransaction()
-                .replace(R.id.Main_Meme_Fragment, new Rusi_Fragment())
+                .replace(R.id.cardView, new Rusi_Fragment())
                 .commit();
     }
 
