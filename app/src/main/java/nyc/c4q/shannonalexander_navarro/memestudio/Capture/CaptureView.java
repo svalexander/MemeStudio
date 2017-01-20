@@ -30,7 +30,6 @@ public class CaptureView {
     private Activity mActivity;
     private File mPhotoPath;
 
-
     public CaptureView (Activity inputActivity) {
         this.mActivity = inputActivity;
         String[] perms = {"android.permission. WRITE_EXTERNAL_STORAGE"};
@@ -51,6 +50,7 @@ public class CaptureView {
         //Draw the view inside the Bitmap
         mView.draw(new Canvas(image));
         try {
+            //Need to implement unique naming method
             saveImageToExternal("abc", image);
         } catch (IOException e) {
             e.printStackTrace();

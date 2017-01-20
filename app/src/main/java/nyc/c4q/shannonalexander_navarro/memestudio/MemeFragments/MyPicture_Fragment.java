@@ -15,6 +15,7 @@ import nyc.c4q.shannonalexander_navarro.memestudio.R;
  */
 
 public class MyPicture_Fragment extends Fragment {
+
     private View mView;
     private ImageView mBackground;
 

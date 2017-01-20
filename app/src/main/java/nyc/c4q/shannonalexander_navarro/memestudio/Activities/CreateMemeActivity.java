@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +20,7 @@ import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 
@@ -33,17 +32,16 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     private Activity mActivity = this;
-    private ImageView home_fab;
     private ImageView showPicture;
-    private int PICK_IMAGE_REQUEST = 1;
-    private ImageView shareMeme;
     private ImageView cameraBtn;
     private ImageView galleryBtn;
     private ImageView trashBtn;
-    private CardView includedView;
+    private ImageView shareMeme;
+    private ImageView saveBtn;
+    private ImageView home_fab;
     private Button theoryBtn;
     private Button meBtn;
-    private ImageView saveBtn;
+    private int PICK_IMAGE_REQUEST = 1;
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
@@ -92,7 +90,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.me:
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.cardView, new Rusi_Fragment())
+                        .replace(R.id.cardView, new RusiFragment())
                         .commit();
                 break;
             case R.id.theory:
@@ -102,7 +100,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.camera_icon:
                 TakePicture tp = new TakePicture(mActivity);
-            // to Gallery
+                break;
             case R.id.gallery_icon:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
@@ -114,7 +112,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
                 shareMemeIntent.setType("image/jpeg");
-
                 // File photoFile = new File(getFilesDir(), "foo.jpg");
                 startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
                 break;
@@ -143,21 +140,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 //            myPrefsEdit.commit();
         }
     }
-
-
-//    public void permission() {
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-//                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED) {
-//
-//
-//            ActivityCompat.requestPermissions(this,
-//                    new String[]{Manifest.permission.INTERNET},   //request specific permission from user
-//                    10);
-//
-//            return;
-//        }
-//    }
 
     public void saveInfo (View view) {
         SharedPreferences sharedPref = getSharedPreferences("uri", Context.MODE_PRIVATE);

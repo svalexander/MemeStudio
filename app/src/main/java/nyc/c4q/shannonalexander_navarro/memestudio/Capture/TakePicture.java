@@ -32,7 +32,6 @@ public class TakePicture extends AppCompatActivity {
 
     //Upgraded code to give the saved picture a unique name
     private void dispatchTakePictureIntent () {
-
         // Check if there is a camera.
         PackageManager packageManager = mContext.getPackageManager();
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
@@ -40,7 +39,6 @@ public class TakePicture extends AppCompatActivity {
                     .show();
             return;
         }
-
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         if (takePictureIntent.resolveActivity(mContext.getPackageManager()) != null) {
@@ -64,7 +62,6 @@ public class TakePicture extends AppCompatActivity {
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-
         if (photoFile.exists()) {
             Bitmap myBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
             ImageView myImage = (ImageView) findViewById(R.id.mypicture_meme_background);

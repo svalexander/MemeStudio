@@ -13,7 +13,8 @@ import nyc.c4q.shannonalexander_navarro.memestudio.R;
  * Created by rusili on 1/15/17.
  */
 
-public class Rusi_Fragment extends Fragment {
+public class RusiFragment extends Fragment {
+
     private View mView;
 
     @Nullable

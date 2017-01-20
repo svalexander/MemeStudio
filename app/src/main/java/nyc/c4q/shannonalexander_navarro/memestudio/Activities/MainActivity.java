@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView myMemes;
     private FloatingActionButton goTo;
 
-
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     @Override
     protected void onResume () {
         super.onResume();
-
     }
 
 }
