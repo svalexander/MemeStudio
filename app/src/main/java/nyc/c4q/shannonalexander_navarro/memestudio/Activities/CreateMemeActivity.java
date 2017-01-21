@@ -136,7 +136,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .commit();
                 break;
             case R.id.theory:
-                getFragmentManager().beginTransaction()
+                getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
                         .commit();
                 break;
@@ -159,6 +159,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.save:
                 CaptureView cv = new CaptureView(mActivity);
+               // cv.saveImageToExternal("myPic", bitmap);
                 break;
             case R.id.home:
                 Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
