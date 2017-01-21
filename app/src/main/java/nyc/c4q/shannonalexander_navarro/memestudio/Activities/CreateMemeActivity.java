@@ -147,7 +147,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("uriLink", String.valueOf(showPicture.getDrawingCache(true)));
         editor.apply();
-
     }
 
     //persmission method.

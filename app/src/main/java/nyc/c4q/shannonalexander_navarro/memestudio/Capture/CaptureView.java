@@ -1,7 +1,6 @@
 package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.media.MediaScannerConnection;
@@ -55,12 +54,11 @@ public class CaptureView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         //Store to sdcard
         try {
             CreateImageFile create = new CreateImageFile(mView.getContext());
             mPhotoPath = create.returnFile();
-            galleryAddPic();
+            AddtoGallery.now(mPhotoPath, mActivity);
 
             Toast.makeText(mView.getContext(), "Meme Saved!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
@@ -89,13 +87,5 @@ public class CaptureView {
         } catch (Exception e) {
             throw new IOException();
         }
-    }
-
-    private void galleryAddPic () {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mPhotoPath.getAbsolutePath());
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        mActivity.sendBroadcast(mediaScanIntent);
     }
 }
