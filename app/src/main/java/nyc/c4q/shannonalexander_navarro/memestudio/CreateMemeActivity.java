@@ -16,8 +16,9 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 
@@ -38,6 +39,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     Context context;
     private CardView includedView;
     private Button theoryBtn;
+    private Button paintBtn;
     private ImageView btnSave;
 
 //    private String myTag;
@@ -86,6 +88,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         home_fab = (ImageView) findViewById(R.id.home);
         home_fab.setOnClickListener(this);
         showPicture = (ImageView) findViewById(R.id.showpicture);
+        paintBtn = (Button) findViewById(R.id.paint);
+        paintBtn.setOnClickListener(this);
         shareMeme = (ImageView) findViewById(R.id.share);
         btnSave = (ImageView) findViewById(R.id.save);
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +118,12 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             case R.id.theory:
                 FragmentManager newsFragment = getSupportFragmentManager();
                 newsFragment.beginTransaction().add(R.id.Main_Meme_Fragment, new CryingJordanFragment()).commit();
+                break;
+            case R.id.paint:
+                FragmentManager paintFragment = getSupportFragmentManager();
+                paintFragment.beginTransaction().add(R.id.frags_go_here, new PaintFragment()).commit();
+                break;
+
         }
 
 

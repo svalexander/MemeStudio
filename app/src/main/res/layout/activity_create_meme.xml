@@ -77,7 +77,7 @@
                 android:text="@string/paint" />
         </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/frags_go_here"
             android:layout_width="350dp"
             android:layout_height="0dp"
@@ -90,12 +90,14 @@
                 android:background="@color/cardview_light_background">
                 <include layout="@layout/picture_options" />
                 <ImageView
-                    android:id="@+id/showpicture"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                android:id="@+id/showpicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
 
             </android.support.v7.widget.CardView>
-        </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
