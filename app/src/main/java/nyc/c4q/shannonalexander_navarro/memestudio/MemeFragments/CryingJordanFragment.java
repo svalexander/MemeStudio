@@ -3,6 +3,7 @@ package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -34,6 +35,12 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
     private int changeInY;
     int display;
 
+
+    @Override
+    public void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
     @Nullable
     @Override
