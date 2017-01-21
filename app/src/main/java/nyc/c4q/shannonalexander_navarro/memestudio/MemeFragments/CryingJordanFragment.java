@@ -18,6 +18,7 @@ public class CryingJordanFragment extends Fragment {
 
     private ImageView fragView;
     private ImageView jordanHeadIV;
+    private CryingJordanCustomView customView;
 
     @Nullable
     @Override
