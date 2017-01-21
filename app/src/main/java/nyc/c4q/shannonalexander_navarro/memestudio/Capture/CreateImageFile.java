@@ -1,8 +1,7 @@
 package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
@@ -24,7 +23,7 @@ public class CreateImageFile {
         this.mContext = ctx;
 
         photo = createImageFile();
-        galleryAddPic();
+        AddtoGallery.now(photo, (Activity) mContext);
     }
 
     public File returnFile () {
@@ -33,7 +32,7 @@ public class CreateImageFile {
 
     //Creates an image file that is unique using a timestamp
     private File createImageFile () throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
+        String timeStamp = new SimpleDateFormat("yyyy_MM_dd_HH_mmss").format(new Date());
         String imageFileName = "PNG_" + timeStamp + "_";
         File storageDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -44,14 +43,5 @@ public class CreateImageFile {
         mPhotoPath = image.getAbsolutePath();
         Log.d("Location of picture: ", image.getAbsolutePath());
         return image;
-    }
-
-    //Adds the picture to the Android gallery so anyone can access it.
-    private void galleryAddPic () {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        mContext.sendBroadcast(mediaScanIntent);
     }
 }

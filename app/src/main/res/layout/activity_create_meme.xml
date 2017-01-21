@@ -47,11 +47,13 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+
             <Button
-                android:id="@+id/Lily"
+                android:id="@+id/lily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/lilac"
+                android:onClick="showPopup"
                 android:text="@string/lily" />
 
             <Button
@@ -59,7 +61,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/lilac"
-                android:onClick="MeVsMeFragment"
                 android:text="@string/me" />
 
             <Button
@@ -89,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:background="@color/cardview_light_background">
                 <include layout="@layout/picture_options" />
+
                 <ImageView
                     android:id="@+id/showpicture"
                     android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio;
+package nyc.c4q.shannonalexander_navarro.memestudio.RecyclerView;
 
 import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,9 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import nyc.c4q.shannonalexander_navarro.memestudio.Meme;
+import nyc.c4q.shannonalexander_navarro.memestudio.R;
+
 /**
  * Created by tarynking on 1/17/17.
  */
@@ -18,13 +21,11 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
     private ImageView memeNameIv;
     private Fragment fragment;
 
-
     public MemeViewHolder (ViewGroup parent) {
 //        super(itemView);
         super(inflateView(parent));
         memeNameIv = (ImageView)
-                itemView.findViewById(R.id.iv_meme_item_id);
-
+        itemView.findViewById(R.id.iv_meme_item_id);
     }
 
     private static View inflateView (ViewGroup parent) {
@@ -33,11 +34,9 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind (final Meme meme) {
-
         memeNameIv.setImageURI(meme.getUri());
         Picasso.with(itemView.getContext())
                 .load("http://i.imgur.com/DvpvklR.png")
                 .into(memeNameIv);
-
     }
 }

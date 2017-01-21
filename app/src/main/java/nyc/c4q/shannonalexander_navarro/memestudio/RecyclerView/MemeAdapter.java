@@ -1,10 +1,12 @@
-package nyc.c4q.shannonalexander_navarro.memestudio;
+package nyc.c4q.shannonalexander_navarro.memestudio.RecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nyc.c4q.shannonalexander_navarro.memestudio.Meme;
 
 /**
  * Created by tarynking on 1/17/17.
