@@ -19,8 +19,6 @@ import java.util.Date;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
-// 01-19 15:48:58.549 27614-27614/nyc.c4q.shannonalexander_navarro.memestudio D/Location of picture:: /storage/emulated/0/Android/data/nyc.c4q.shannonalexander_navarro.memestudio/files/Pictures/PNG_20170119_154858_-1059305312.png
-// 01-19 15:50:21.691 28298-28298/nyc.c4q.shannonalexander_navarro.memestudio D/Location of picture:: /storage/emulated/0/Android/data/nyc.c4q.shannonalexander_navarro.memestudio/files/Pictures/PNG_20170119_155021_1512245498.png
 
 /**
  * Created by rusili on 1/15/17.

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cj_frag_view"
+    android:orientation="vertical">
+
     <ImageView
-        android:src="@drawable/crying_jordan"
+        android:scaleType="matrix"
         android:id="@+id/cj_head_iv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-<ImageView
-    android:id="@+id/cj_iv_replacing_original_iv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:src="@drawable/crying_jordan" />
+
+    <ImageView
+        android:id="@+id/cj_iv_replacing_original_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

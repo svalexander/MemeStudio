@@ -155,6 +155,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.save:
                 CaptureView cv = new CaptureView(mActivity);
+               // cv.saveImageToExternal("myPic", bitmap);
                 break;
             case R.id.home:
                 Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
