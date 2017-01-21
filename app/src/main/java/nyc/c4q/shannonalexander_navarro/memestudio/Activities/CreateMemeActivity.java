@@ -9,10 +9,15 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +27,15 @@ import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCoffeeFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyShotFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyTennisFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
+import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily1;
+import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily2;
+import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily3;
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
     // Storage Permissions variables
@@ -31,9 +44,14 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+
+public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+
+    private final int PICK_IMAGE_REQUEST = 1;
     private Activity mActivity = this;
     private ImageView showPicture;
     private ImageView cameraBtn;
+    private ImageView shareMeme;
     private ImageView galleryBtn;
     private ImageView trashBtn;
     private ImageView shareMeme;
@@ -42,13 +60,17 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private Button theoryBtn;
     private Button meBtn;
     private int PICK_IMAGE_REQUEST = 1;
+    private ImageView btnSave;
+    private Button theoryBtn;
+    private Button lilyBtn;
+
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
 //    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
         verifyStoragePermissions(this);
@@ -58,6 +80,20 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
         //calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
+
+        // Shares Meme
+        shareMeme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                Intent shareMemeIntent = new Intent();
+                shareMemeIntent.setAction(Intent.ACTION_SEND);
+                shareMemeIntent.setType("image/jpeg");
+
+                // File photoFile = new File(getFilesDir(), "foo.jpg");
+                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
+            }
+        });
+
     }
 
 
@@ -83,10 +119,25 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         saveBtn.setOnClickListener(this);
         home_fab = (ImageView) findViewById(R.id.home);
         home_fab.setOnClickListener(this);
+        showPicture = (ImageView) findViewById(R.id.showpicture);
+        shareMeme = (ImageView) findViewById(R.id.share);
+        shareMeme.setOnClickListener(this);
+        btnSave = (ImageView) findViewById(R.id.save);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //CaptureView cv = new CaptureView(mActivity);
+                //cv.capture();
+
+                TakePicture tp = new TakePicture(mActivity);
+            }
+        });
+        lilyBtn = (Button) findViewById(R.id.lily);
+//        lilyBtn.setOnClickListener(this);
     }
 
     @Override
-    public void onClick (View v) {
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.me:
                 getFragmentManager().beginTransaction()
@@ -127,6 +178,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+
         // Loads gallery picture into showPicture
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
@@ -141,7 +193,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    public void saveInfo (View view) {
+    public void saveInfo(View view) {
         SharedPreferences sharedPref = getSharedPreferences("uri", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
