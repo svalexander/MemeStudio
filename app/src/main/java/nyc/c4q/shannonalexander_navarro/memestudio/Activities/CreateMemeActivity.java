@@ -54,7 +54,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView btnSave;
     private Button theoryBtn;
     private Button lilyBtn;
-
+    private boolean isFragment = false;
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
@@ -72,18 +72,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
         //calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
 
-        // Shares Meme
-        shareMeme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View view) {
-                Intent shareMemeIntent = new Intent();
-                shareMemeIntent.setAction(Intent.ACTION_SEND);
-                shareMemeIntent.setType("image/jpeg");
-
-                // File photoFile = new File(getFilesDir(), "foo.jpg");
-                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
-            }
-        });
 
     }
 
@@ -124,7 +112,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             }
         });
         lilyBtn = (Button) findViewById(R.id.lily);
-//        lilyBtn.setOnClickListener(this);
     }
 
     @Override
@@ -134,11 +121,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 getFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new RusiFragment())
                         .commit();
+                isFragment = true;
                 break;
             case R.id.theory:
                 getFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
                         .commit();
+                isFragment = true;
                 break;
             case R.id.camera_icon:
                 TakePicture tp = new TakePicture(mActivity);
@@ -148,7 +137,9 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
             case R.id.trash:
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
+                if (isFragment) {
+                    getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
+                }
                 break;
             case R.id.share:
                 Intent shareMemeIntent = new Intent();
