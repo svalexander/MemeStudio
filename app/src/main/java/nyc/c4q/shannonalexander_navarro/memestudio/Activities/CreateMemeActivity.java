@@ -124,7 +124,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             }
         });
         lilyBtn = (Button) findViewById(R.id.lily);
-//        lilyBtn.setOnClickListener(this);
     }
 
     @Override
