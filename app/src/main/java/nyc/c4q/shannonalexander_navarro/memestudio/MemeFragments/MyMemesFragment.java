@@ -26,6 +26,12 @@ public class MyMemesFragment extends Fragment {
     private LinearLayout memeLayout;
     private FloatingActionButton closeRVFrag;
 
+    @Override
+    public void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -16,6 +16,9 @@ public class MemeAdapter extends RecyclerView.Adapter {
 
     private List <Meme> meme = new ArrayList <>();
 
+    public MemeAdapter(){
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
         return new MemeViewHolder(parent);
