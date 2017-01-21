@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
+import nyc.c4q.shannonalexander_navarro.memestudio.RecyclerView.MemeAdapter;
 
 /**
  * Created by shannonalexander-navarro on 1/8/17.

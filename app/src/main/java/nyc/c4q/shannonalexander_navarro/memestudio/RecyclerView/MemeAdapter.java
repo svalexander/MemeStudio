@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.Meme;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeViewHolder;
 
 /**
  * Created by tarynking on 1/17/17.

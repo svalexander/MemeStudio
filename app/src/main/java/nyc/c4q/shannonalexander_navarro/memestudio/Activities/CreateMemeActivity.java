@@ -28,6 +28,7 @@ import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFra
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCoffeeFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyShotFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyTennisFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
@@ -57,6 +58,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private Button lilyBtn;
     private boolean isFragment = false;
     private View fragView;
+    private Button paintBtn;
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
 //    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
@@ -86,6 +88,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         meBtn.setOnClickListener(this);
         theoryBtn = (Button) findViewById(R.id.theory);
         theoryBtn.setOnClickListener(this);
+        paintBtn = (Button) findViewById(R.id.paint);
+        paintBtn.setOnClickListener(this);
 
         cameraBtn = (ImageView) findViewById(R.id.camera_icon);
         cameraBtn.setOnClickListener(this);
@@ -124,12 +128,21 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .replace(R.id.cardView, new RusiFragment())
                         .addToBackStack(null)
                         .commit();
+                isFragment= true;
                 break;
             case R.id.theory:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
                         .addToBackStack(null)
                         .commit();
+                isFragment = true;
+                break;
+            case R.id.paint:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.cardView, new PaintFragment())
+                        .addToBackStack(null)
+                        .commit();
+                isFragment = true;
                 break;
             case R.id.camera_icon:
                 TakePicture tp = new TakePicture(mActivity);
@@ -139,8 +152,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
             case R.id.trash:
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
-                break;
+                if (isFragment) {
+                    getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.cardView)).commit();
+                }
+                    break;
             case R.id.share:
                 Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
