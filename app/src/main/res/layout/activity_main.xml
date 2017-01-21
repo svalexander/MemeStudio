@@ -26,6 +26,20 @@
         android:layout_height="0dp"
         android:layout_weight="80">
 
+        <GridView
+            android:id="@+id/main_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+
+            android:columnWidth="90dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:numColumns="2" >
+        </GridView>
+
         <TextView
             android:id="@+id/createTV"
             android:layout_width="match_parent"

@@ -134,11 +134,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
             case R.id.me:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new RusiFragment())
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.theory:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.camera_icon:
@@ -149,7 +151,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
             case R.id.trash:
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .remove(getSupportFragmentManager()
+                        .findFragmentById(R.id.cardView))
+                        .commit();
                 break;
             case R.id.share:
                 Intent shareMemeIntent = new Intent();
@@ -169,6 +174,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         InputMethodManager imm = (InputMethodManager) fragView.getContext()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(fragView.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
@@ -223,7 +229,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case lily1:
-                Toast.makeText(getBaseContext(),"Drink Coffee",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Drink Coffee!",Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyCoffeeFrag())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -231,7 +237,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .commit();
                 return true;
             case lily2:
-                Toast.makeText(getBaseContext(),"Tennis",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Tennis!",Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyTennisFrag())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
