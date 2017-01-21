@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
@@ -25,41 +24,33 @@ import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.R;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCoffeeFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyShotFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyTennisFrag;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily1;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily2;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily3;
 
-public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     // Storage Permissions variables
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
-public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-
-    private final int PICK_IMAGE_REQUEST = 1;
     private Activity mActivity = this;
     private ImageView showPicture;
     private ImageView cameraBtn;
-    private ImageView shareMeme;
     private ImageView galleryBtn;
     private ImageView trashBtn;
     private ImageView shareMeme;
     private ImageView saveBtn;
     private ImageView home_fab;
-    private Button theoryBtn;
     private Button meBtn;
-    private int PICK_IMAGE_REQUEST = 1;
+    private final int PICK_IMAGE_REQUEST = 1;
     private ImageView btnSave;
     private Button theoryBtn;
     private Button lilyBtn;
@@ -217,4 +208,42 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    public void showPopup(View view){
+        PopupMenu popup = new PopupMenu(this, view);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.actions);
+        popup.show();
+        popup.show();
+    }
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case lily1:
+                Toast.makeText(getBaseContext(),"Drink Coffee",Toast.LENGTH_LONG).show();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.cardView, new LilyCoffeeFrag())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            case lily2:
+                Toast.makeText(getBaseContext(),"Tennis",Toast.LENGTH_LONG).show();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.cardView, new LilyTennisFrag())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            case lily3:
+                Toast.makeText(getBaseContext(),"Take a hit!",Toast.LENGTH_LONG).show();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.cardView, new LilyShotFrag())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            default:
+                return false;
+        }
+    }
 }
