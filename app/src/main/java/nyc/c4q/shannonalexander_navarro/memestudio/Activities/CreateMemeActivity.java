@@ -53,15 +53,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView home_fab;
     private Button meBtn;
     private final int PICK_IMAGE_REQUEST = 1;
-    private ImageView btnSave;
     private Button theoryBtn;
     private Button lilyBtn;
     private boolean isFragment = false;
     private View fragView;
     private Button paintBtn;
-//    private String myTag;
-//    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
-//    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +69,9 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
-        //calligrapher.setFont(findViewById(R.id.textGrp), "BungeeShade-Regular.ttf");
-
-
     }
 
-
-    // Initializes Views
-    private void initViews () {
+    private void initViews() {
         fragView = (View) findViewById(R.id.frags_go_here);
         showPicture = (ImageView) findViewById(R.id.showpicture);
 
@@ -107,16 +98,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
         shareMeme.setOnClickListener(this);
-        btnSave = (ImageView) findViewById(R.id.save);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //CaptureView cv = new CaptureView(mActivity);
-                //cv.capture();
-
-                TakePicture tp = new TakePicture(mActivity);
-            }
-        });
         lilyBtn = (Button) findViewById(R.id.lily);
     }
 
@@ -128,7 +109,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .replace(R.id.cardView, new RusiFragment())
                         .addToBackStack(null)
                         .commit();
-                isFragment= true;
+                isFragment = true;
                 break;
             case R.id.theory:
                 getSupportFragmentManager().beginTransaction()
@@ -155,7 +136,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 if (isFragment) {
                     getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.cardView)).commit();
                 }
-                    break;
+                break;
             case R.id.share:
                 Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
