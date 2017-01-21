@@ -55,7 +55,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private Button theoryBtn;
     private Button lilyBtn;
     private boolean isFragment = false;
-
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
 //    private SharedPreferences.Editor myPrefsEdit = myPrefs.edit();
@@ -77,7 +76,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
 
     // Initializes Views
-    private void initViews () {
+    private void initViews() {
         showPicture = (ImageView) findViewById(R.id.showpicture);
 
         meBtn = (Button) findViewById(R.id.me);
@@ -159,8 +158,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Loads gallery picture into showPicture
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             android.net.Uri uri = data.getData();
@@ -170,8 +168,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                     .fit()
                     .into(showPicture);
 
-//            myPrefsEdit.putString("url", uri.toString());
-//            myPrefsEdit.commit();
         }
     }
 
@@ -184,7 +180,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
     //persmission method.
-    public static void verifyStoragePermissions (Activity activity) {
+    public static void verifyStoragePermissions(Activity activity) {
         // Check if we have read or write permission
         int writePermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int readPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -199,26 +195,24 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    public void showPopup(View view){
+    public void showPopup(View view) {
         PopupMenu popup = new PopupMenu(this, view);
         popup.setOnMenuItemClickListener(this);
         popup.inflate(R.menu.actions);
         popup.show();
-        popup.show();
     }
+
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case lily1:
-                Toast.makeText(getBaseContext(),"Drink Coffee",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Drink Coffee", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyCoffeeFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
                 return true;
             case lily2:
-                Toast.makeText(getBaseContext(),"Tennis",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Tennis", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyTennisFrag())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -226,7 +220,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .commit();
                 return true;
             case lily3:
-                Toast.makeText(getBaseContext(),"Take a hit!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Take a hit!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyShotFrag())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

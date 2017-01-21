@@ -84,19 +84,27 @@
             android:layout_height="0dp"
             android:layout_weight="6.5">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView"
-               android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:background="@color/cardview_light_background">
-                <include layout="@layout/picture_options" />
 
-                <ImageView
-                    android:id="@+id/showpicture"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@color/cardview_light_background">
+                    <include layout="@layout/picture_options" />
 
-            </android.support.v7.widget.CardView>
+                    <FrameLayout
+                        android:id="@+id/camera_preview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/showpicture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </android.support.v7.widget.CardView>
+
         </LinearLayout>
     </LinearLayout>
 

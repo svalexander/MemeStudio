@@ -1,67 +1,56 @@
 package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags;
 
-import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-import com.squareup.picasso.Picasso;
+import android.widget.Toast;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
-import static android.app.Activity.RESULT_OK;
+import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCamera.getCameraInstance;
 
 /**
  * Created by Hyun on 1/20/17.
  */
 
-public class LilyTennisFrag extends Fragment implements View.OnClickListener {
+public class LilyTennisFrag extends Fragment {
 
-    private final int PICK_IMAGE_REQUEST = 2;
+    private View mView;
     private ImageView gallery;
-    private LinearLayout lilyTennis;
+    private Camera mCamera;
+    private FrameLayout lilyFrame;
+    private LilyPreview lilyPreview;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lily_frag_layout, container, false);
-        return view;
+        mView = inflater.inflate(R.layout.lily_frag_layout, container, false);
+
+        mCamera = getCameraInstance();
+
+        lilyFrame = (FrameLayout) mView.findViewById(R.id.lily_cam_preview);
+        lilyPreview = new LilyPreview(getContext(), mCamera);
+        lilyFrame.addView(lilyPreview);
+
+        gallery = (ImageView) mView.findViewById(R.id.lilypicture);
+        gallery.setBackgroundResource(R.drawable.lily_tennis);
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getContext(), "Click Save to Save", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                mCamera.takePicture(null, null, null);
+            }
+        });
+        return mView;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-        lilyTennis = (LinearLayout) view.findViewById(R.id.lily_container);
-        lilyTennis.setBackgroundResource(R.drawable.lily_tennis);
-        gallery = (ImageView) view.findViewById(R.id.lilypicture);
-        gallery.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent lilyIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(lilyIntent, PICK_IMAGE_REQUEST);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PICK_IMAGE_REQUEST
-                && resultCode == RESULT_OK
-                && data != null
-                && data.getData() != null) {
-
-            android.net.Uri uri = data.getData();
-
-            Picasso.with(getActivity())
-                    .load(uri)
-                    .fit()
-                    .into(gallery);
-        }
-    }
 }
