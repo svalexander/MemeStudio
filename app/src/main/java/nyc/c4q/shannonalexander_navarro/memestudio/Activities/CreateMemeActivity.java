@@ -114,16 +114,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
         shareMeme.setOnClickListener(this);
-//        btnSave = (ImageView) findViewById(R.id.save);
-//        btnSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //CaptureView cv = new CaptureView(mActivity);
-//                //cv.capture();
-//
-//                TakePicture tp = new TakePicture(mActivity);
-//            }
-//        });
         lilyBtn = (Button) findViewById(R.id.lily);
 //        lilyBtn.setOnClickListener(this);
     }
