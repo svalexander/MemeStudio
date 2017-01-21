@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -54,7 +55,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView btnSave;
     private Button theoryBtn;
     private Button lilyBtn;
-
+    private View fragView;
 
 //    private String myTag;
 //    private SharedPreferences myPrefs = getSharedPreferences(myTag, 0);
@@ -84,12 +85,12 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
             }
         });
-
     }
 
 
     // Initializes Views
     private void initViews () {
+        fragView = (View) findViewById(R.id.frags_go_here);
         showPicture = (ImageView) findViewById(R.id.showpicture);
 
         meBtn = (Button) findViewById(R.id.me);
@@ -113,16 +114,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         showPicture = (ImageView) findViewById(R.id.showpicture);
         shareMeme = (ImageView) findViewById(R.id.share);
         shareMeme.setOnClickListener(this);
-        btnSave = (ImageView) findViewById(R.id.save);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //CaptureView cv = new CaptureView(mActivity);
-                //cv.capture();
-
-                TakePicture tp = new TakePicture(mActivity);
-            }
-        });
         lilyBtn = (Button) findViewById(R.id.lily);
     }
 
@@ -130,13 +121,15 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.me:
-                getFragmentManager().beginTransaction()
+                getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new RusiFragment())
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.theory:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.camera_icon:
@@ -147,7 +140,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
                 break;
             case R.id.trash:
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.cardView)).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .remove(getSupportFragmentManager()
+                        .findFragmentById(R.id.cardView))
+                        .commit();
                 break;
             case R.id.share:
                 Intent shareMemeIntent = new Intent();
@@ -165,6 +161,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 startActivity(homeIntent);
                 break;
         }
+        InputMethodManager imm = (InputMethodManager) fragView.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(fragView.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
@@ -219,7 +219,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case lily1:
-                Toast.makeText(getBaseContext(),"Drink Coffee",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Drink Coffee!",Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyCoffeeFrag())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -227,7 +227,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .commit();
                 return true;
             case lily2:
-                Toast.makeText(getBaseContext(),"Tennis",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Tennis!",Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyTennisFrag())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

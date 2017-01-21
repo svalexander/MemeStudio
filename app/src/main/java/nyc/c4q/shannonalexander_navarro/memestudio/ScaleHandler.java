@@ -14,15 +14,12 @@ public class ScaleHandler extends ScaleGestureDetector.SimpleOnScaleGestureListe
         this.userScaler = userScaler;
     }
 
-
-
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
         this.userScaler *= detector.getScaleFactor();
         this.userScaler = Math.max(0.1f, Math.min(this.userScaler, 5.0f));
 
        // invalidate();
-
         return true;
     }
 

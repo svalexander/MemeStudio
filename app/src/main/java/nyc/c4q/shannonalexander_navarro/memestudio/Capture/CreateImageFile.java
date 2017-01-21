@@ -17,13 +17,15 @@ import java.util.Date;
 public class CreateImageFile {
     private File photo;
     private Context mContext;
+    private Activity mActivity;
     private String mPhotoPath;
 
-    public CreateImageFile (Context ctx) throws IOException {
+    public CreateImageFile (Activity act, Context ctx) throws IOException {
+        this.mActivity = act;
         this.mContext = ctx;
 
         photo = createImageFile();
-        AddtoGallery.now(photo, (Activity) mContext);
+        AddtoGallery.now(photo, mActivity);
     }
 
     public File returnFile () {
@@ -33,10 +35,11 @@ public class CreateImageFile {
     //Creates an image file that is unique using a timestamp
     private File createImageFile () throws IOException {
         String timeStamp = new SimpleDateFormat("yyyy_MM_dd_HH_mmss").format(new Date());
-        String imageFileName = "PNG_" + timeStamp + "_";
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); //Creates app specific folder
+        File imageFile = new File(path, timeStamp + ".png"); // Imagename.png
         File storageDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
+                timeStamp,  /* prefix */
                 ".png",         /* suffix */
                 storageDir      /* directory */
         );
