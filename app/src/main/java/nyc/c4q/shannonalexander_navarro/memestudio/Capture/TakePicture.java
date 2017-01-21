@@ -43,7 +43,7 @@ public class TakePicture extends AppCompatActivity {
 
         if (takePictureIntent.resolveActivity(mContext.getPackageManager()) != null) {
             try {
-                CreateImageFile create = new CreateImageFile(mContext);
+                CreateImageFile create = new CreateImageFile(mActivity, mContext);
                 photoFile = create.returnFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
