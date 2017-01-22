@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 /**
- * Created by shannonalexander-navarro on 1/21/17.
+ * Created by tarynking on 1/20/17.
  */
 
 public class PaintMemeView extends ImageView {
@@ -35,10 +35,13 @@ public class PaintMemeView extends ImageView {
         paintLine.setAntiAlias(true); // this makes your stroke smooth
         paintLine.setStrokeWidth(10);//set the width of your stroke
     }
+
     //getters
+
     public Paint getPaintLine() {
         return paintLine;
     }
+
     public Path getPath() {
         return path;
     }
@@ -46,18 +49,23 @@ public class PaintMemeView extends ImageView {
     public void setStrokeRed() {
         paintLine.setColor(Color.RED);
     }
+
     public void setStrokeGreen() {
         paintLine.setColor(Color.GREEN);
     }
+
     public void setStrokeBlue() {
         paintLine.setColor(Color.BLUE);
     }
+
     public void setStrokeYellow() {
         paintLine.setColor(Color.YELLOW);
     }
+
     public void setStrokeThick() {
         paintLine.setStrokeWidth(20);
     }
+
     public void setStrokeThin() {
         paintLine.setStrokeWidth(10);
     }
@@ -65,6 +73,7 @@ public class PaintMemeView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPath(path, paintLine);
+
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {

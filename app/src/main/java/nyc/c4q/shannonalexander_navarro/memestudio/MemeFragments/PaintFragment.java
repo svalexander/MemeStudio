@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 /**
- * Created by shannonalexander-navarro on 1/21/17.
+ * Created by tarynking on 1/21/17.
  */
 
 public class  PaintFragment extends Fragment {
