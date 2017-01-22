@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.Activities;
+package nyc.c4q.shannonalexander_navarro.memestudio.activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.MyMemesFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.memecollection.MyMemesFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -61,10 +61,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
         }
-    }
-
-    @Override
-    protected void onResume () {
-        super.onResume();
     }
 }
