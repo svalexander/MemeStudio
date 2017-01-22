@@ -14,27 +14,21 @@ import android.widget.ImageView;
  */
 
 public class PaintMemeView extends ImageView {
-
-
     private Paint paintLine = new Paint();
     private Path path = new Path();
-
     //Constructors
     public PaintMemeView(Context context) {
         super(context);
         init(null, 0);
     }
-
     public PaintMemeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
-
     public PaintMemeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs, defStyleAttr);
     }
-
     private void init(AttributeSet attrs, int defStyleAttr) {
         paintLine.setColor(Color.RED);
         paintLine.setStyle(Paint.Style.STROKE);
@@ -51,8 +45,6 @@ public class PaintMemeView extends ImageView {
     public Path getPath() {
         return path;
     }
-
-
     //button methods
     public void setStrokeRed() {
         paintLine.setColor(Color.RED);
@@ -77,14 +69,12 @@ public class PaintMemeView extends ImageView {
     public void setStrokeThin() {
         paintLine.setStrokeWidth(10);
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPath(path, paintLine);
 
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();

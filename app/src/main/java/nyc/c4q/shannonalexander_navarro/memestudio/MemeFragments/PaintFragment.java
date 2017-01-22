@@ -14,10 +14,8 @@ import nyc.c4q.shannonalexander_navarro.memestudio.R;
  */
 
 public class  PaintFragment extends Fragment {
-
     private View fragView;
     private PaintMemeView paintBackground;
-
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
