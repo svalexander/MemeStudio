@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
+import nyc.c4q.shannonalexander_navarro.memestudio.RecyclerView.MemeAdapter;
 
 /**
  * Created by shannonalexander-navarro on 1/8/17.
@@ -25,6 +26,7 @@ public class MyMemesFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private LinearLayout memeLayout;
     private FloatingActionButton closeRVFrag;
+    private MemeAdapter adapter;
 
     @Override
     public void onCreate (Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MyMemesFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.my_memes_fragment, container, false);
+        adapter = new MemeAdapter();
+        recyclerView.setAdapter(adapter);
         recyclerView = (RecyclerView) root.findViewById(R.id.meme_recyclervivew);
         layoutManager = new LinearLayoutManager(getContext());
         memeLayout = (LinearLayout) root.findViewById(R.id.saved_memes_frag);

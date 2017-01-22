@@ -15,6 +15,8 @@ import android.widget.RelativeLayout;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
+import static android.view.MotionEvent.INVALID_POINTER_ID;
+
 /**
  * Created by shannonalexander-navarro on 1/19/17.
  */
@@ -25,6 +27,14 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
     private Matrix matrix; //picked android graphics
     private float scale = 1f;
     private ScaleGestureDetector scaleGestureDetector;
+
+    private float mLastTouchX;
+    private float mLastTouchY;
+    private int mActivePointerId = INVALID_POINTER_ID;
+    private float mPosX;
+    private float mPosY;
+    private float mLastGestureX;
+    private float mLastGestureY;
 
     private WindowManager.LayoutParams layoutParams;
     float windowWidth;
@@ -62,6 +72,74 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
             public boolean onTouch(View view, MotionEvent mevent) {
                 scaleGestureDetector.onTouchEvent(mevent);
 
+//                final int action = MotionEventCompat.getActionMasked(mevent);
+//              //  WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) iv.getLayoutParams();
+//                switch (action) {
+//                    case MotionEvent.ACTION_DOWN: {
+//
+//                        RelativeLayout.LayoutParams layoutParamsAD = (RelativeLayout.LayoutParams) view.getLayoutParams();
+//                        final int pointerIndex = MotionEventCompat.getActionIndex(mevent);
+//                        final float x = MotionEventCompat.getX(mevent, pointerIndex);
+//                        final float y = MotionEventCompat.getY(mevent, pointerIndex);
+//
+//                        // Remember where we started (for dragging)
+//                        mLastTouchX = x;
+//                        mLastTouchY = y;
+//                        // Save the ID of this pointer (for dragging)
+//                        mActivePointerId = MotionEventCompat.getPointerId(mevent, 0);
+//                        break;
+//                    }
+//
+//                    case MotionEvent.ACTION_MOVE: {
+//                        // Find the index of the active pointer and fetch its position
+//                        final int pointerIndex =
+//                                MotionEventCompat.findPointerIndex(mevent, mActivePointerId);
+//
+//                        final float x = MotionEventCompat.getX(mevent, pointerIndex);
+//                        final float y = MotionEventCompat.getY(mevent, pointerIndex);
+//
+//                        // Calculate the distance moved
+//                        final float dx = x - mLastTouchX;
+//                        final float dy = y - mLastTouchY;
+//
+//                        mPosX += dx;
+//                        mPosY += dy;
+//
+//                        iv.invalidate();
+//
+//                        // Remember this touch position for the next move event
+//                        mLastTouchX = x;
+//                        mLastTouchY = y;
+//
+//                        break;
+//                    }
+//
+//                    case MotionEvent.ACTION_UP: {
+//                        mActivePointerId = INVALID_POINTER_ID;
+//                        break;
+//                    }
+//
+//                    case MotionEvent.ACTION_CANCEL: {
+//                        mActivePointerId = INVALID_POINTER_ID;
+//                        break;
+//                    }
+//
+//                    case MotionEvent.ACTION_POINTER_UP: {
+//
+//                        final int pointerIndex = MotionEventCompat.getActionIndex(mevent);
+//                        final int pointerId = MotionEventCompat.getPointerId(mevent, pointerIndex);
+//
+//                        if (pointerId == mActivePointerId) {
+//                            // This was our active pointer going up. Choose a new
+//                            // active pointer and adjust accordingly.
+//                            final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+//                            mLastTouchX = MotionEventCompat.getX(mevent, newPointerIndex);
+//                            mLastTouchY = MotionEventCompat.getY(mevent, newPointerIndex);
+//                            mActivePointerId = MotionEventCompat.getPointerId(mevent, newPointerIndex);
+//                        }
+//                        break;
+//                    }
+//                }
                 final int X = (int) mevent.getRawX();
                 final int Y = (int) mevent.getRawY();
                 switch (mevent.getAction() & MotionEvent.ACTION_MASK) {
