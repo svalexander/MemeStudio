@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -20,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
@@ -138,10 +141,13 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.share:
-                Intent shareMemeIntent = new Intent();
+                final Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
                 shareMemeIntent.setType("image/jpeg");
                 // File photoFile = new File(getFilesDir(), "foo.jpg");
+                Uri thisUri = Uri.parse(CaptureView.uri);
+                final File photoFile = new File(getFilesDir(), CaptureView.uri );
+                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
                 startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
                 break;
             case R.id.save:

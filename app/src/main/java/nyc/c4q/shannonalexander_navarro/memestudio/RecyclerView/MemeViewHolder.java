@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio;
+package nyc.c4q.shannonalexander_navarro.memestudio.RecyclerView;
 
 import android.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+
+import nyc.c4q.shannonalexander_navarro.memestudio.Meme;
+import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
 /**
  * Created by tarynking on 1/17/17.
