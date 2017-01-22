@@ -10,4 +10,7 @@
     <color name="lilac">#d7c7fd</color>
     <color name="brown">#9f7e69</color>
     <color name="ltBrown">#d2bba0</color>
+    <color name="red">#ff0000</color>
+    <color name="blue">#0000ff</color>
+    <color name="green">#00FF00</color>
 </resources>
