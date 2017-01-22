@@ -18,18 +18,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.CreateMemeActivity">
+        <activity android:name=".activities.CreateMemeActivity">
         </activity>
 
         <activity
-            android:name=".MemeFragments$LilyFrags.LilyCamera"
+            android:name=".MemeFragments.lilycamera.LilyCamera"
             android:label="@string/app_name"
             android:screenOrientation="landscape">
         </activity>

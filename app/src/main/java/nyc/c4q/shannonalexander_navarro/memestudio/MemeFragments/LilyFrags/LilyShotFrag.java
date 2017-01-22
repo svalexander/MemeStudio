@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags;
 
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -12,9 +12,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyPreview;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
-import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCamera.getCameraInstance;
+import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyCamera.getCameraInstance;
 
 /**
  * Created by Hyun on 1/20/17.
@@ -28,12 +29,20 @@ public class LilyShotFrag extends Fragment {
     private LilyPreview lilyPreview;
     private Camera mCamera;
 
+
+    @Override
+    public void onCreate (Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.lily_frag_layout, container, false);
 
         mCamera = getCameraInstance();
+
 
         lilyFrame = (FrameLayout) mView.findViewById(R.id.lily_cam_preview);
         lilyPreview = new LilyPreview(getContext(), mCamera);
@@ -48,8 +57,20 @@ public class LilyShotFrag extends Fragment {
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
                 mCamera.takePicture(null, null, null);
+                mCamera.release();
+                mCamera = null;
             }
         });
         return mView;
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
+        }
+    }
+
 }

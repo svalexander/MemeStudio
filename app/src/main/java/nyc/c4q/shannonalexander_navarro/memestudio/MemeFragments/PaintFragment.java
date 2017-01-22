@@ -28,6 +28,7 @@ public class  PaintFragment extends Fragment {
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragView = inflater.inflate(R.layout.paint_meme_fragment, container, false);
         paintBackground = (PaintMemeView) fragView.findViewById(R.id.paint_meme_background);
+
         redBtn = (Button) fragView.findViewById(R.id.red_btn);
         redBtn.setOnClickListener(new View.OnClickListener() {
             @Override

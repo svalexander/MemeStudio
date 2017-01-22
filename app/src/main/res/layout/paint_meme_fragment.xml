@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/paint_meme_frame_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="350dp"
+    android:layout_height="350dp"
     android:orientation="vertical">
 
     <Button
@@ -18,7 +16,6 @@
         android:visibility="invisible" />
 
     <ImageView
-        android:baselineAlignBottom="true"
         android:id="@+id/color_pallette_image_id"
         android:layout_width="65dp"
         android:layout_height="61dp"
@@ -33,25 +30,22 @@
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/color_pallette_image_id"
         android:background="@color/white"/>
-
     <Button
         android:id="@+id/green_btn"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_above="@id/bottom_button"
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/red_btn"
         android:background="@color/green" />
-
     <Button
         android:id="@+id/blue_btn"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_above="@id/bottom_button"
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/green_btn"
         android:background="@color/blue"/>
-
     <Button
         android:id="@+id/black_btn"
         android:layout_width="50dp"
@@ -81,3 +75,4 @@
 
 
 </RelativeLayout>
+
