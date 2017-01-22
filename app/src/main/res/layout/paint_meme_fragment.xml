@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/paint_meme_frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <Button
         android:id="@+id/bottom_button"
         android:layout_width="match_parent"
@@ -12,6 +16,7 @@
         android:layout_alignParentBottom="true"
         android:text="Button"
         android:visibility="invisible" />
+
     <ImageView
         android:baselineAlignBottom="true"
         android:id="@+id/color_pallette_image_id"
@@ -27,7 +32,8 @@
         android:layout_above="@id/bottom_button"
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/color_pallette_image_id"
-        android:background="@color/red" />
+        android:background="@color/white"/>
+
     <Button
         android:id="@+id/green_btn"
         android:layout_width="50dp"
@@ -36,6 +42,7 @@
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/red_btn"
         android:background="@color/green" />
+
     <Button
         android:id="@+id/blue_btn"
         android:layout_width="50dp"
@@ -43,27 +50,36 @@
         android:layout_above="@id/bottom_button"
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/green_btn"
-        android:background="@color/blue" />
+        android:background="@color/blue"/>
+
+
+
     <Button
         android:id="@+id/white_btn"
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_above="@id/bottom_button"
         android:layout_gravity="bottom"
-        android:layout_toRightOf="@id/blue_btn"
-        android:background="@color/white" />
+        android:layout_toRightOf="@id/black_btn"
+        android:background="@color/white"
+        android:layout_alignParentEnd="true" />
+
     <Button
         android:id="@+id/black_btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_above="@id/bottom_button"
         android:layout_gravity="bottom"
-        android:layout_toRightOf="@id/white_btn"
+        android:layout_toRightOf="@id/blue_btn"
         android:background="@color/black" />
+
     <nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintMemeView
         android:id="@+id/paint_meme_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_above="@+id/color_pallette_image_id" />
-</LinearLayout>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

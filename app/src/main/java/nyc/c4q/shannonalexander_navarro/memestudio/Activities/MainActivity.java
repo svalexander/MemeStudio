@@ -32,7 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initViews();
 
         String[] projection = {MediaStore.Images.Thumbnails._ID};
+<<<<<<< HEAD
+        // Create the cursor pointing to the SDCard
+        cursor = getContentResolver().query( MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI,
+=======
         cursor = managedQuery( MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI,
+>>>>>>> f199e35ff9c5cb207a2195653947116367da4a20
                 projection, // Which columns to return
                 null,       // Return all rows
                 null,

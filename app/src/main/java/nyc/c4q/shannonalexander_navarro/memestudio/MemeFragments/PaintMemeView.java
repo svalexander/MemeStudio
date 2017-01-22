@@ -52,9 +52,17 @@ public class PaintMemeView extends ImageView {
     public void setStrokeBlue() {
         paintLine.setColor(Color.BLUE);
     }
+<<<<<<< HEAD
+
     public void setStrokeBlack() {
         paintLine.setColor(Color.BLACK);
     }
+
+=======
+    public void setStrokeBlack() {
+        paintLine.setColor(Color.BLACK);
+    }
+>>>>>>> f199e35ff9c5cb207a2195653947116367da4a20
     public void setStrokeWhite() {
         paintLine.setColor(Color.WHITE);
     }
