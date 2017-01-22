@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton goTo;
     private Cursor cursor;
     private int columnIndex;
-    private String[] galleryURI;
+    private MyMemesFragment myMemesFragment;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -31,19 +31,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
         initViews();
 
-        // Set up an array of the Thumbnail Image ID column we want
         String[] projection = {MediaStore.Images.Thumbnails._ID};
-        // Create the cursor pointing to the SDCard
         cursor = managedQuery( MediaStore.Images.Thumbnails.EXTERNAL_CONTENT_URI,
                 projection, // Which columns to return
                 null,       // Return all rows
                 null,
                 MediaStore.Images.Thumbnails.IMAGE_ID);
-        // Get the column index of the Thumbnails Image ID
         columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Thumbnails._ID);
 
-//        GridView sdcardImages = (GridView) findViewById(R.id.main_gridview);
-//        sdcardImages.setAdapter(new ImageAdapter(this, cursor, columnIndex));
     }
 
     private void initViews () {
@@ -57,8 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick (View v) {
         switch (v.getId()) {
             case R.id.myMemes:
+                myMemesFragment = new MyMemesFragment(cursor,columnIndex);
                 FragmentManager savedMemesFragment = getSupportFragmentManager();
-                savedMemesFragment.beginTransaction().add(R.id.activity_main, new MyMemesFragment()).commit();
+                savedMemesFragment.beginTransaction().add(R.id.activity_main, myMemesFragment).commit();
                 break;
             case R.id.newMeme:
                 Intent intent = new Intent(MainActivity.this, CreateMemeActivity.class);

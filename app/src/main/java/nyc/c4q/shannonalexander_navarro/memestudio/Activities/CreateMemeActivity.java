@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
@@ -219,25 +218,22 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 Toast.makeText(getBaseContext(), "Drink Coffee!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyCoffeeFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
+                isFragment = true;
                 return true;
             case lily2:
                 Toast.makeText(getBaseContext(), "Tennis!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyTennisFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
+                isFragment = true;
                 return true;
             case lily3:
                 Toast.makeText(getBaseContext(), "Take a hit!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyShotFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
+                isFragment = true;
                 return true;
             default:
                 return false;

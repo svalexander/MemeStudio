@@ -25,10 +25,6 @@ public class LilyCamera extends AppCompatActivity {
 
         mCamera = getCameraInstance();
 
-        // Create our Preview view and set it as the content of our activity.
-        mPreview = new LilyPreview(this, mCamera);
-        preview = (FrameLayout) findViewById(R.id.lily_cam_preview);
-        preview.addView(mPreview);
 
     }
 
