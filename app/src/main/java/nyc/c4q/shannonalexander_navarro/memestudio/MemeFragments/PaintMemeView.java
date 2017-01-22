@@ -35,13 +35,10 @@ public class PaintMemeView extends ImageView {
         paintLine.setAntiAlias(true); // this makes your stroke smooth
         paintLine.setStrokeWidth(10);//set the width of your stroke
     }
-
     //getters
-
     public Paint getPaintLine() {
         return paintLine;
     }
-
     public Path getPath() {
         return path;
     }
@@ -49,27 +46,29 @@ public class PaintMemeView extends ImageView {
     public void setStrokeRed() {
         paintLine.setColor(Color.RED);
     }
-
     public void setStrokeGreen() {
         paintLine.setColor(Color.GREEN);
     }
-
     public void setStrokeBlue() {
         paintLine.setColor(Color.BLUE);
     }
+<<<<<<< HEAD
 
     public void setStrokeBlack() {
         paintLine.setColor(Color.BLACK);
     }
 
+=======
+    public void setStrokeBlack() {
+        paintLine.setColor(Color.BLACK);
+    }
+>>>>>>> f199e35ff9c5cb207a2195653947116367da4a20
     public void setStrokeWhite() {
         paintLine.setColor(Color.WHITE);
     }
-
     public void setStrokeThick() {
         paintLine.setStrokeWidth(20);
     }
-
     public void setStrokeThin() {
         paintLine.setStrokeWidth(10);
     }
@@ -77,7 +76,6 @@ public class PaintMemeView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPath(path, paintLine);
-
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {

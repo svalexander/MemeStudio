@@ -6,10 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.CaptureView;
@@ -136,12 +138,18 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 if (isFragment) {
                     getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.cardView)).commit();
                 }
+                if (showPicture != null){
+                    showPicture.setImageResource(0);
+                }
                 break;
             case R.id.share:
-                Intent shareMemeIntent = new Intent();
+                final Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
                 shareMemeIntent.setType("image/jpeg");
                 // File photoFile = new File(getFilesDir(), "foo.jpg");
+                Uri thisUri = Uri.parse(CaptureView.uri);
+                final File photoFile = new File(getFilesDir(), CaptureView.uri );
+                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
                 startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
                 break;
             case R.id.save:
@@ -210,25 +218,22 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 Toast.makeText(getBaseContext(), "Drink Coffee!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyCoffeeFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
+                isFragment = true;
                 return true;
             case lily2:
                 Toast.makeText(getBaseContext(), "Tennis!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyTennisFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
+                isFragment = true;
                 return true;
             case lily3:
                 Toast.makeText(getBaseContext(), "Take a hit!", Toast.LENGTH_LONG).show();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new LilyShotFrag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
                         .commit();
+                isFragment = true;
                 return true;
             default:
                 return false;
