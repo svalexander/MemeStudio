@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
+package nyc.c4q.shannonalexander_navarro.memestudio.capture;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,6 +20,7 @@ public class CreateImageFile {
     private Activity mActivity;
     private String mPhotoPath;
 
+
     public CreateImageFile (Activity act, Context ctx) throws IOException {
         this.mActivity = act;
         this.mContext = ctx;
@@ -31,6 +32,7 @@ public class CreateImageFile {
     public File returnFile () {
         return photo;
     }
+
 
     //Creates an image file that is unique using a timestamp
     private File createImageFile () throws IOException {
@@ -46,5 +48,12 @@ public class CreateImageFile {
         mPhotoPath = image.getAbsolutePath();
         Log.d("Location of picture: ", image.getAbsolutePath());
         return image;
+    }
+    public File getPhoto() {
+        return photo;
+    }
+
+    public String getmPhotoPath() {
+        return mPhotoPath;
     }
 }

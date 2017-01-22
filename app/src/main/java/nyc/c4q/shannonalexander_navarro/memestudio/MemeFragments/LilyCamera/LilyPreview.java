@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera;
 
 import android.content.Context;
 import android.hardware.Camera;
@@ -6,6 +6,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
+
 
 /**
  * Created by Hyun on 1/20/17.
@@ -15,9 +16,11 @@ public class LilyPreview extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mHolder;
     private Camera mCamera;
 
-    public LilyPreview(Context context, Camera camera) {
+
+
+    public LilyPreview(Context context, Camera mCamera) {
         super(context);
-        mCamera = camera;
+        this.mCamera = mCamera;
 
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
@@ -29,18 +32,20 @@ public class LilyPreview extends SurfaceView implements SurfaceHolder.Callback {
 
 
     public void surfaceCreated(SurfaceHolder holder) {
-        // The Surface has been created, now tell the camera where to draw the preview.
+        // The Surface has been created, now tell the mCamera where to draw the preview.
         try {
             mCamera.setDisplayOrientation(90);
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
+
         } catch (IOException e) {
         }
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
-        // empty. Take care of releasing the Camera preview in your activity.
+        // Surface will be destroyed when we return, so stop the preview.
     }
+
 
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         // If your preview can change or rotate, take care of those events here.
@@ -54,6 +59,7 @@ public class LilyPreview extends SurfaceView implements SurfaceHolder.Callback {
         // stop preview before making changes
         try {
             mCamera.stopPreview();
+
         } catch (Exception e) {
             // ignore: tried to stop a non-existent preview
         }
@@ -69,4 +75,5 @@ public class LilyPreview extends SurfaceView implements SurfaceHolder.Callback {
         } catch (Exception e) {
         }
     }
+
 }

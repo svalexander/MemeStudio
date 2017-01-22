@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
+package nyc.c4q.shannonalexander_navarro.memestudio.capture;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,6 +23,7 @@ public class TakePicture extends AppCompatActivity {
     private Context mContext;
     private File photoFile = null;
     static final int REQUEST_TAKE_PHOTO = 1;
+    private Bitmap myBitmap ;
 
     public TakePicture (Activity act) {
         this.mActivity = act;
@@ -63,9 +64,14 @@ public class TakePicture extends AppCompatActivity {
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         if (photoFile.exists()) {
-            Bitmap myBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+            myBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
             ImageView myImage = (ImageView) findViewById(R.id.mypicture_meme_background);
             myImage.setImageBitmap(myBitmap);
         }
     }
+
+    public Bitmap getMyBitmap() {
+        return myBitmap;
+    }
+
 }

@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags;
 
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -12,9 +12,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyPreview;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
-import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCamera.getCameraInstance;
+import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyCamera.getCameraInstance;
 
 /**
  * Created by Hyun on 1/20/17.
@@ -28,6 +29,7 @@ public class LilyTennisFrag extends Fragment {
     private FrameLayout lilyFrame;
     private LilyPreview lilyPreview;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,10 +37,10 @@ public class LilyTennisFrag extends Fragment {
 
         mCamera = getCameraInstance();
 
+
         lilyFrame = (FrameLayout) mView.findViewById(R.id.lily_cam_preview);
         lilyPreview = new LilyPreview(getContext(), mCamera);
         lilyFrame.addView(lilyPreview);
-
         gallery = (ImageView) mView.findViewById(R.id.lilypicture);
         gallery.setBackgroundResource(R.drawable.lily_tennis);
         gallery.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +50,21 @@ public class LilyTennisFrag extends Fragment {
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
                 mCamera.takePicture(null, null, null);
+                mCamera.release();
+                mCamera = null;
             }
         });
         return mView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.Capture;
+package nyc.c4q.shannonalexander_navarro.memestudio.capture;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

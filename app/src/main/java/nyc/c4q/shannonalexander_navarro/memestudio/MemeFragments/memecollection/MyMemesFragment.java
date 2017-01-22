@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.memecollection;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity;
+import nyc.c4q.shannonalexander_navarro.memestudio.activities.MainActivity;
 import nyc.c4q.shannonalexander_navarro.memestudio.ImageAdapter;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
