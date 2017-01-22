@@ -23,8 +23,7 @@ public class MemeViewHolder extends RecyclerView.ViewHolder {
 //        super(itemView);
         super(inflateView(parent));
         memeNameIv = (ImageView)
-                itemView.findViewById(R.id.iv_meme_item_id);
-
+        itemView.findViewById(R.id.iv_meme_item_id);
     }
 
     private static View inflateView (ViewGroup parent) {

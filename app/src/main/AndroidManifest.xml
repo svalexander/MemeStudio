@@ -2,12 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nyc.c4q.shannonalexander_navarro.memestudio">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -15,14 +18,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateMemeActivity"></activity>
+        <activity android:name=".Activities.CreateMemeActivity"></activity>
+
+        <activity android:name=".MemeFragments.LilyFrags.LilyCamera"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape">
+        <!-- configure this activity to use landscape orientation -->
+        </activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

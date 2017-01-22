@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/lily1"
+        android:title="Drink Coffee" />
+    <item android:id="@+id/lily2"
+        android:title="Play tennis" />
+    <item android:id="@+id/lily3"
+        android:title="One shot" />
+</menu>

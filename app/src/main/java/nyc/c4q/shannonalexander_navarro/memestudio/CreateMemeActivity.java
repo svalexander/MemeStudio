@@ -16,10 +16,10 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
+import nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity;
 import nyc.c4q.shannonalexander_navarro.memestudio.Capture.TakePicture;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.Rusi_Fragment;
 
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -171,11 +171,11 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    public void MeVsMeFragment (View view) {
-        getFragmentManager().beginTransaction()
-                .replace(R.id.cardView, new Rusi_Fragment())
-                .commit();
-    }
+//    public void MeVsMeFragment (View view) {
+//        getFragmentManager().beginTransaction()
+//                .replace(R.id.cardView, new RusiFragment())
+//                .commit();
+//    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
