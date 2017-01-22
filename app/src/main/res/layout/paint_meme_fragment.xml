@@ -52,18 +52,6 @@
         android:layout_toRightOf="@id/green_btn"
         android:background="@color/blue"/>
 
-
-
-    <Button
-        android:id="@+id/white_btn"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_above="@id/bottom_button"
-        android:layout_gravity="bottom"
-        android:layout_toRightOf="@id/black_btn"
-        android:background="@color/white"
-        android:layout_alignParentEnd="true" />
-
     <Button
         android:id="@+id/black_btn"
         android:layout_width="50dp"
@@ -72,6 +60,16 @@
         android:layout_gravity="bottom"
         android:layout_toRightOf="@id/blue_btn"
         android:background="@color/black" />
+
+    <Button
+        android:id="@+id/white_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@id/bottom_button"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:layout_toRightOf="@id/black_btn"
+        android:layout_alignParentEnd="true" />
 
     <nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintMemeView
         android:id="@+id/paint_meme_background"
