@@ -1,32 +1,39 @@
 package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.GridView;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity;
+import nyc.c4q.shannonalexander_navarro.memestudio.ImageAdapter;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
-import nyc.c4q.shannonalexander_navarro.memestudio.RecyclerView.MemeAdapter;
 
 /**
  * Created by shannonalexander-navarro on 1/8/17.
  */
 
+@SuppressLint("ValidFragment")
 public class MyMemesFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
-    private LinearLayout memeLayout;
+    private View root;
+    private GridView sdcardImages;
     private FloatingActionButton closeRVFrag;
-    private MemeAdapter adapter;
+    private Cursor cursor;
+    private int columnIndex;
+
+    @SuppressLint("ValidFragment")
+    public MyMemesFragment(Cursor cursor, int columnIndex) {
+        this.cursor = cursor;
+        this.columnIndex = columnIndex;
+    }
 
     @Override
     public void onCreate (Bundle savedInstanceState) {
@@ -38,14 +45,11 @@ public class MyMemesFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.my_memes_fragment, container, false);
-        recyclerView = (RecyclerView) root.findViewById(R.id.meme_recyclervivew);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new MemeAdapter();
-        recyclerView.setAdapter(adapter);
+        root = inflater.inflate(R.layout.my_memes_fragment, container, false);
 
-        memeLayout = (LinearLayout) root.findViewById(R.id.saved_memes_frag);
+        sdcardImages = (GridView) root.findViewById(R.id.main_gridview);
+        sdcardImages.setAdapter(new ImageAdapter(getContext(), cursor, columnIndex));
+
         closeRVFrag = (FloatingActionButton) root.findViewById(R.id.close_rv);
         closeRVFrag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +60,4 @@ public class MyMemesFragment extends Fragment {
         });
         return root;
     }
-
 }

@@ -24,6 +24,8 @@ public class LilyCamera extends AppCompatActivity {
         setContentView(R.layout.lily_frag_layout);
 
         mCamera = getCameraInstance();
+
+
     }
 
     /**
