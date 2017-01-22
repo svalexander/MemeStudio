@@ -3,7 +3,6 @@ package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -72,74 +71,6 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
             public boolean onTouch(View view, MotionEvent mevent) {
                 scaleGestureDetector.onTouchEvent(mevent);
 
-//                final int action = MotionEventCompat.getActionMasked(mevent);
-//              //  WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) iv.getLayoutParams();
-//                switch (action) {
-//                    case MotionEvent.ACTION_DOWN: {
-//
-//                        RelativeLayout.LayoutParams layoutParamsAD = (RelativeLayout.LayoutParams) view.getLayoutParams();
-//                        final int pointerIndex = MotionEventCompat.getActionIndex(mevent);
-//                        final float x = MotionEventCompat.getX(mevent, pointerIndex);
-//                        final float y = MotionEventCompat.getY(mevent, pointerIndex);
-//
-//                        // Remember where we started (for dragging)
-//                        mLastTouchX = x;
-//                        mLastTouchY = y;
-//                        // Save the ID of this pointer (for dragging)
-//                        mActivePointerId = MotionEventCompat.getPointerId(mevent, 0);
-//                        break;
-//                    }
-//
-//                    case MotionEvent.ACTION_MOVE: {
-//                        // Find the index of the active pointer and fetch its position
-//                        final int pointerIndex =
-//                                MotionEventCompat.findPointerIndex(mevent, mActivePointerId);
-//
-//                        final float x = MotionEventCompat.getX(mevent, pointerIndex);
-//                        final float y = MotionEventCompat.getY(mevent, pointerIndex);
-//
-//                        // Calculate the distance moved
-//                        final float dx = x - mLastTouchX;
-//                        final float dy = y - mLastTouchY;
-//
-//                        mPosX += dx;
-//                        mPosY += dy;
-//
-//                        iv.invalidate();
-//
-//                        // Remember this touch position for the next move event
-//                        mLastTouchX = x;
-//                        mLastTouchY = y;
-//
-//                        break;
-//                    }
-//
-//                    case MotionEvent.ACTION_UP: {
-//                        mActivePointerId = INVALID_POINTER_ID;
-//                        break;
-//                    }
-//
-//                    case MotionEvent.ACTION_CANCEL: {
-//                        mActivePointerId = INVALID_POINTER_ID;
-//                        break;
-//                    }
-//
-//                    case MotionEvent.ACTION_POINTER_UP: {
-//
-//                        final int pointerIndex = MotionEventCompat.getActionIndex(mevent);
-//                        final int pointerId = MotionEventCompat.getPointerId(mevent, pointerIndex);
-//
-//                        if (pointerId == mActivePointerId) {
-//                            // This was our active pointer going up. Choose a new
-//                            // active pointer and adjust accordingly.
-//                            final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-//                            mLastTouchX = MotionEventCompat.getX(mevent, newPointerIndex);
-//                            mLastTouchY = MotionEventCompat.getY(mevent, newPointerIndex);
-//                            mActivePointerId = MotionEventCompat.getPointerId(mevent, newPointerIndex);
-//                        }
-//                        break;
-//                    }
-//                }
                 final int X = (int) mevent.getRawX();
                 final int Y = (int) mevent.getRawY();
                 switch (mevent.getAction() & MotionEvent.ACTION_MASK) {
@@ -173,13 +104,6 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
         return root;
 
     }
-
-
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        scaleGestureDetector.onTouchEvent(ev);
-//        return true;
-//    }
-
 
     private class ScaleListener extends ScaleGestureDetector.
             SimpleOnScaleGestureListener {
