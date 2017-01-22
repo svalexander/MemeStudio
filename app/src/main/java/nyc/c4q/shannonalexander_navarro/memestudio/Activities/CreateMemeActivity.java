@@ -139,6 +139,9 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 if (isFragment) {
                     getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentById(R.id.cardView)).commit();
                 }
+                if (showPicture != null){
+                    showPicture.setImageResource(0);
+                }
                 break;
             case R.id.share:
                 final Intent shareMemeIntent = new Intent();

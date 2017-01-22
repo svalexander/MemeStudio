@@ -55,8 +55,6 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.crying_jordan_frag, container, false);
-        //  fragView = (ImageView) root.findViewById(R.id.cj_iv_replacing_original_iv);
-
         windowWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
         windowHeight = getActivity().getWindowManager().getDefaultDisplay().getHeight();
         layout = (ViewGroup) root.findViewById(R.id.cj_frag_view);
