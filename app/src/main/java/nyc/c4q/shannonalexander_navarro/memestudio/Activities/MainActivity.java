@@ -8,10 +8,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.TextView;
 
-import nyc.c4q.shannonalexander_navarro.memestudio.ImageAdapter;
+import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.MyMemesFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
@@ -28,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Calligrapher calligrapher = new Calligrapher(this);
+        calligrapher.setFont(this, "Quantico-Regular.ttf", true);
         initViews();
 
         // Set up an array of the Thumbnail Image ID column we want
@@ -41,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Get the column index of the Thumbnails Image ID
         columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Thumbnails._ID);
 
-        GridView sdcardImages = (GridView) findViewById(R.id.main_gridview);
-        sdcardImages.setAdapter(new ImageAdapter(this, cursor, columnIndex));
+//        GridView sdcardImages = (GridView) findViewById(R.id.main_gridview);
+//        sdcardImages.setAdapter(new ImageAdapter(this, cursor, columnIndex));
     }
 
     private void initViews () {

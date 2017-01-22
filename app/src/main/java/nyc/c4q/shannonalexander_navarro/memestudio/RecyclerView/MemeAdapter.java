@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.Meme;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeViewHolder;
 
 /**
  * Created by tarynking on 1/17/17.
@@ -27,9 +26,9 @@ public class MemeAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder (RecyclerView.ViewHolder holder, int position) {
-        MemeViewHolder animalViewHolder = (MemeViewHolder) holder;
+        MemeViewHolder memeViewHolder = (MemeViewHolder) holder;
         Meme currentMeme = meme.get(position);
-        animalViewHolder.bind(currentMeme);
+        memeViewHolder.bind(currentMeme);
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.net.Uri;
  * Created by tarynking on 1/17/17.
  */
 
-public class Meme {
+public class Meme  {
 
     public Uri uri;
 

@@ -5,6 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blush"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -12,41 +13,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="nyc.c4q.shannonalexander_navarro.memestudio.Activities.MainActivity">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="80">
 
-        <GridView
-            android:id="@+id/main_gridview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
+        <!--<GridView-->
+        <!--android:id="@+id/main_gridview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="10dp"-->
+        <!--android:verticalSpacing="10dp"-->
+        <!--android:horizontalSpacing="10dp"-->
 
-            android:columnWidth="90dp"
-            android:stretchMode="columnWidth"
-            android:gravity="center"
-            android:numColumns="2" >
-        </GridView>
+        <!--android:columnWidth="90dp"-->
+        <!--android:stretchMode="columnWidth"-->
+        <!--android:gravity="center"-->
+        <!--android:numColumns="2" >-->
+        <!--</GridView>-->
 
         <TextView
             android:id="@+id/createTV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold|italic"
+            android:text="@string/meme_studio"
+            android:textAllCaps="true"
+            android:textSize="64dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/newMeme"
+            android:backgroundTint="@color/cardview_dark_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -56,10 +55,11 @@
 
     <TextView
         android:id="@+id/myMemes"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="10"
+        android:layout_weight="20"
+        android:gravity="center"
         android:text="@string/my_memes"
         android:textSize="30sp" />
 

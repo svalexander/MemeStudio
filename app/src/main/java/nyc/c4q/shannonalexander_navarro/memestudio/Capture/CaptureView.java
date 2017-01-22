@@ -28,6 +28,7 @@ public class CaptureView {
     private View mView;
     private Activity mActivity;
     private File mPhotoPath;
+    public  static String uri;
 
     public CaptureView (Activity inputActivity) {
         this.mActivity = inputActivity;
@@ -70,6 +71,8 @@ public class CaptureView {
     public void saveImageToExternal (String imgName, Bitmap bm) throws IOException {
         File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); //Creates app specific folder
         path.mkdirs();
+        uri = path.toString();
+        Log.d("This is the uri string", uri);
         File imageFile = new File(path, imgName + ".png"); // Imagename.png
         FileOutputStream out = new FileOutputStream(imageFile);
         try {
