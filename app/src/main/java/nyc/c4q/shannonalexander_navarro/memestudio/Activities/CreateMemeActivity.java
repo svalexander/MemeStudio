@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -143,14 +144,30 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.share:
-                final Intent shareMemeIntent = new Intent();
-                shareMemeIntent.setAction(Intent.ACTION_SEND);
-                shareMemeIntent.setType("image/jpeg");
-                // File photoFile = new File(getFilesDir(), "foo.jpg");
-                Uri thisUri = Uri.parse(CaptureView.uri);
-                final File photoFile = new File(getFilesDir(), CaptureView.uri);
-                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
-                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
+//                final Intent shareMemeIntent = new Intent();
+//                shareMemeIntent.setAction(Intent.ACTION_SEND);
+//                shareMemeIntent.setType("image/jpeg");
+//                Uri thisUri = Uri.parse(CaptureView.uri);
+//                Uri thisUri = Uri.parse(CaptureView.getUri());
+//                final File photoFile = new File(getFilesDir(), CaptureView.uri);
+//                final File photoFile = new File(getFilesDir(), CaptureView.getUri());
+//                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
+//                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
+
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
+
+                File downloadedPic =  new File(
+                        Environment.getExternalStoragePublicDirectory(
+                                Environment.DIRECTORY_DOWNLOADS),
+                        "q.jpeg");
+
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(downloadedPic));
+                startActivity(shareIntent);
+//                startActivity(Intent.createChooser(shareIntent, "Share image using"));
                 break;
             case R.id.save:
                 CaptureView cv = new CaptureView(mActivity);
