@@ -6,30 +6,29 @@ import android.support.v7.app.AppCompatActivity;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
+import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyCam.release;
+
 
 /**
  * Created by Hyun on 1/20/17.
  */
 
-public class LilyCamera extends AppCompatActivity {
+public class LilyCameraActivity extends AppCompatActivity {
 
-    private Camera mCamera;
+    private static Camera sCamera;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lily_frag_layout);
 
-        mCamera = getCameraInstance();
+        sCamera = LilyCam.getCameraInstance();
 
     }
-    public static Camera getCameraInstance() {
-        Camera c = null;
-        try {
-            c = Camera.open(); // attempt to get a Camera instance
-        } catch (Exception e) {
-            throw new IllegalStateException("Camera not working");
-        }
-        return c; // returns null if camera is unavailable
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        release();
     }
 }

@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,14 +22,18 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCoffeeFrag;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyShotFrag;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyTennisFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags.LilyCoffeeFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags.LilyShotFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags.LilyTennisFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
+import nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView;
+import nyc.c4q.shannonalexander_navarro.memestudio.capture.TakePicture;
 
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily1;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily2;
@@ -69,7 +75,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
     }
 
-    private void initViews() {
+    private void initViews()
+    {
         fragView = (View) findViewById(R.id.frags_go_here);
         showPicture = (ImageView) findViewById(R.id.showpicture);
 
@@ -124,7 +131,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 isFragment = true;
                 break;
             case R.id.camera_icon:
-                nyc.c4q.shannonalexander_navarro.memestudio.capture.TakePicture tp = new nyc.c4q.shannonalexander_navarro.memestudio.capture.TakePicture(mActivity);
+                TakePicture tp = new TakePicture(mActivity);
                 break;
             case R.id.gallery_icon:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -139,19 +146,24 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.share:
-                final Intent shareMemeIntent = new Intent();
-                shareMemeIntent.setAction(Intent.ACTION_SEND);
-                shareMemeIntent.setType("image/jpeg");
-//                Uri thisUri = Uri.parse(nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView.uri);
-//                final File photoFile = new File(getFilesDir(), nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView.uri);
-//                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
-                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                File downloadedPic =  new File(
+                        Environment.getExternalStoragePublicDirectory(
+                                Environment.DIRECTORY_DOWNLOADS),
+                        "q.jpeg");
+
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(downloadedPic));
+                startActivity(shareIntent);
                 break;
             case R.id.save:
-                nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView cv = new nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView(mActivity);
+                CaptureView cv = new CaptureView(mActivity);
                 break;
             case R.id.home:
-                Intent homeIntent = new Intent(CreateMemeActivity.this, nyc.c4q.shannonalexander_navarro.memestudio.activities.MainActivity.class);
+                Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
                 startActivity(homeIntent);
                 break;
         }

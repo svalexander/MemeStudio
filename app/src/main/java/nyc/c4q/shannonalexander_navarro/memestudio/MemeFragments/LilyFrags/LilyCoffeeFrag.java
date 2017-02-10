@@ -1,6 +1,5 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags;
 
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,10 +11,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyCam;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyPreview;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
-
-import static nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilycamera.LilyCamera.getCameraInstance;
 
 /**
  * Created by Hyun on 1/19/17.
@@ -25,7 +23,6 @@ public class LilyCoffeeFrag extends Fragment {
     private View mView;
     private ImageView gallery;
     private FrameLayout lilyFrame;
-    private Camera mCamera;
     private LilyPreview lilyPreview;
 
     @Override
@@ -38,10 +35,9 @@ public class LilyCoffeeFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.lily_frag_layout, container, false);
 
-        mCamera = getCameraInstance();
 
         lilyFrame = (FrameLayout) mView.findViewById(R.id.lily_cam_preview);
-        lilyPreview = new LilyPreview(getContext(), mCamera);
+        lilyPreview = new LilyPreview(getContext(), LilyCam.getCameraInstance());
         lilyFrame.addView(lilyPreview);
 
         gallery = (ImageView) mView.findViewById(R.id.lilypicture);
@@ -52,23 +48,11 @@ public class LilyCoffeeFrag extends Fragment {
                 Toast toast = Toast.makeText(getContext(), "Click Save to Save", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
-                mCamera.takePicture(null, null, null);
-                mCamera.release();
-                mCamera = null;
 
             }
         });
 
         return mView;
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (mCamera != null) {
-            mCamera.release();
-            mCamera = null;
-        }
     }
 
 }
