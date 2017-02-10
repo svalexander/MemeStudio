@@ -1,4 +1,4 @@
-package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags;
+package nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags;
 
 import android.hardware.Camera;
 import android.os.Bundle;

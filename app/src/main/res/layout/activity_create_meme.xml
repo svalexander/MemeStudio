@@ -65,11 +65,11 @@
                 android:text="@string/me" />
 
             <Button
-                android:id="@+id/theory"
+                android:id="@+id/jordan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/lilac"
-                android:text="@string/theory" />
+                android:text="@string/crying_jordan" />
 
             <Button
                 android:id="@+id/paint"

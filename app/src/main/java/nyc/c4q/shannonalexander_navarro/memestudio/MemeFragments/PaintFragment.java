@@ -22,6 +22,7 @@ public class  PaintFragment extends Fragment {
     private Button blueBtn;
     private Button blackBtn;
     private Button whiteBtn;
+
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,8 +34,10 @@ public class  PaintFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 paintBackground.setStrokeRed();
+
             }
         });
+
         greenBtn = (Button) fragView.findViewById(R.id.green_btn);
         greenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +45,7 @@ public class  PaintFragment extends Fragment {
                 paintBackground.setStrokeGreen();
             }
         });
+
         blueBtn = (Button) fragView.findViewById(R.id.blue_btn);
         blueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,13 +53,16 @@ public class  PaintFragment extends Fragment {
                 paintBackground.setStrokeBlue();
             }
         });
+
         blackBtn = (Button) fragView.findViewById(R.id.black_btn);
         blackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 paintBackground.setStrokeBlack();
+
             }
         });
+
         whiteBtn = (Button) fragView.findViewById(R.id.white_btn);
         whiteBtn.setOnClickListener(new View.OnClickListener() {
             @Override

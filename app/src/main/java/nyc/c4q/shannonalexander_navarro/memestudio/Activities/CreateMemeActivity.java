@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -21,22 +20,19 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-
 import me.anwarshahriar.calligrapher.Calligrapher;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.CryingJordanFragment;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyCoffeeFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyShotFrag;
+import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.LilyFrags.LilyTennisFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.PaintFragment;
 import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.RusiFragment;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags.LilyCoffeeFrag;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags.LilyShotFrag;
-import nyc.c4q.shannonalexander_navarro.memestudio.MemeFragments.lilyfrags.LilyTennisFrag;
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
-import nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView;
-import nyc.c4q.shannonalexander_navarro.memestudio.capture.TakePicture;
 
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily1;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily2;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily3;
+
 
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     // Storage Permissions variables
@@ -55,7 +51,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView home_fab;
     private Button meBtn;
     private final int PICK_IMAGE_REQUEST = 1;
-    private Button theoryBtn;
+    private Button jordanBtn;
     private Button lilyBtn;
     private boolean isFragment = false;
     private View fragView;
@@ -79,8 +75,8 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
         meBtn = (Button) findViewById(R.id.me);
         meBtn.setOnClickListener(this);
-        theoryBtn = (Button) findViewById(R.id.theory);
-        theoryBtn.setOnClickListener(this);
+        jordanBtn = (Button) findViewById(R.id.jordan);
+        jordanBtn.setOnClickListener(this);
         paintBtn = (Button) findViewById(R.id.paint);
         paintBtn.setOnClickListener(this);
 
@@ -113,7 +109,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .commit();
                 isFragment = true;
                 break;
-            case R.id.theory:
+            case R.id.jordan:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
                         .addToBackStack(null)
@@ -128,7 +124,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 isFragment = true;
                 break;
             case R.id.camera_icon:
-                TakePicture tp = new TakePicture(mActivity);
+                nyc.c4q.shannonalexander_navarro.memestudio.capture.TakePicture tp = new nyc.c4q.shannonalexander_navarro.memestudio.capture.TakePicture(mActivity);
                 break;
             case R.id.gallery_icon:
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -146,17 +142,16 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 final Intent shareMemeIntent = new Intent();
                 shareMemeIntent.setAction(Intent.ACTION_SEND);
                 shareMemeIntent.setType("image/jpeg");
-                // File photoFile = new File(getFilesDir(), "foo.jpg");
-                Uri thisUri = Uri.parse(CaptureView.uri);
-                final File photoFile = new File(getFilesDir(), CaptureView.uri);
-                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
+//                Uri thisUri = Uri.parse(nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView.uri);
+//                final File photoFile = new File(getFilesDir(), nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView.uri);
+//                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
                 startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
                 break;
             case R.id.save:
-                CaptureView cv = new CaptureView(mActivity);
+                nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView cv = new nyc.c4q.shannonalexander_navarro.memestudio.capture.CaptureView(mActivity);
                 break;
             case R.id.home:
-                Intent homeIntent = new Intent(CreateMemeActivity.this, MainActivity.class);
+                Intent homeIntent = new Intent(CreateMemeActivity.this, nyc.c4q.shannonalexander_navarro.memestudio.activities.MainActivity.class);
                 startActivity(homeIntent);
                 break;
         }
@@ -213,6 +208,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+
         switch (item.getItemId()) {
             case lily1:
                 Toast.makeText(getBaseContext(), "Drink Coffee!", Toast.LENGTH_LONG).show();
