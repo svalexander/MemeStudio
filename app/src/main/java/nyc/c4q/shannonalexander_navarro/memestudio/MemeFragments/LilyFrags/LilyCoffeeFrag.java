@@ -23,7 +23,6 @@ public class LilyCoffeeFrag extends Fragment {
     private View mView;
     private ImageView gallery;
     private FrameLayout lilyFrame;
-//    private LilyCam mCamera;
     private LilyPreview lilyPreview;
 
     @Override

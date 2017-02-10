@@ -39,6 +39,7 @@ import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily1;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily2;
 import static nyc.c4q.shannonalexander_navarro.memestudio.R.id.lily3;
 
+
 public class CreateMemeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     // Storage Permissions variables
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -56,7 +57,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
     private ImageView home_fab;
     private Button meBtn;
     private final int PICK_IMAGE_REQUEST = 1;
-    private Button theoryBtn;
+    private Button jordanBtn;
     private Button lilyBtn;
     private boolean isFragment = false;
     private View fragView;
@@ -74,14 +75,15 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
         calligrapher.setFont(this, "Quantico-Regular.ttf", true);
     }
 
-    private void initViews() {
+    private void initViews()
+    {
         fragView = (View) findViewById(R.id.frags_go_here);
         showPicture = (ImageView) findViewById(R.id.showpicture);
 
         meBtn = (Button) findViewById(R.id.me);
         meBtn.setOnClickListener(this);
-        theoryBtn = (Button) findViewById(R.id.theory);
-        theoryBtn.setOnClickListener(this);
+        jordanBtn = (Button) findViewById(R.id.jordan);
+        jordanBtn.setOnClickListener(this);
         paintBtn = (Button) findViewById(R.id.paint);
         paintBtn.setOnClickListener(this);
 
@@ -114,7 +116,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                         .commit();
                 isFragment = true;
                 break;
-            case R.id.theory:
+            case R.id.jordan:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.cardView, new CryingJordanFragment())
                         .addToBackStack(null)
@@ -144,21 +146,10 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.share:
-//                final Intent shareMemeIntent = new Intent();
-//                shareMemeIntent.setAction(Intent.ACTION_SEND);
-//                shareMemeIntent.setType("image/jpeg");
-//                Uri thisUri = Uri.parse(CaptureView.uri);
-//                Uri thisUri = Uri.parse(CaptureView.getUri());
-//                final File photoFile = new File(getFilesDir(), CaptureView.uri);
-//                final File photoFile = new File(getFilesDir(), CaptureView.getUri());
-//                shareMemeIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
-//                startActivity(Intent.createChooser(shareMemeIntent, "Share image using"));
-
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.setType("image/jpeg");
                 shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
 
                 File downloadedPic =  new File(
                         Environment.getExternalStoragePublicDirectory(
@@ -167,7 +158,6 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(downloadedPic));
                 startActivity(shareIntent);
-//                startActivity(Intent.createChooser(shareIntent, "Share image using"));
                 break;
             case R.id.save:
                 CaptureView cv = new CaptureView(mActivity);
@@ -230,6 +220,7 @@ public class CreateMemeActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+
         switch (item.getItemId()) {
             case lily1:
                 Toast.makeText(getBaseContext(), "Drink Coffee!", Toast.LENGTH_LONG).show();

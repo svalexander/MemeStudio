@@ -14,8 +14,6 @@ import android.widget.RelativeLayout;
 
 import nyc.c4q.shannonalexander_navarro.memestudio.R;
 
-import static android.view.MotionEvent.INVALID_POINTER_ID;
-
 /**
  * Created by shannonalexander-navarro on 1/19/17.
  */
@@ -26,15 +24,6 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
     private Matrix matrix; //picked android graphics
     private float scale = 1f;
     private ScaleGestureDetector scaleGestureDetector;
-
-    private float mLastTouchX;
-    private float mLastTouchY;
-    private int mActivePointerId = INVALID_POINTER_ID;
-    private float mPosX;
-    private float mPosY;
-    private float mLastGestureX;
-    private float mLastGestureY;
-
     private WindowManager.LayoutParams layoutParams;
     float windowWidth;
     float windowHeight;
@@ -42,8 +31,6 @@ public class CryingJordanFragment extends android.support.v4.app.Fragment {
     ViewGroup layout;
     private int changeInX;
     private int changeInY;
-    int display;
-
 
     @Override
     public void onCreate (Bundle savedInstanceState) {

@@ -23,7 +23,6 @@ public class LilyTennisFrag extends Fragment {
 
     private View mView;
     private ImageView gallery;
-//    private Camera mCamera;
     private FrameLayout lilyFrame;
     private LilyPreview lilyPreview;
 
